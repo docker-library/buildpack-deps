@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
 		libpq-dev \
 		libpq-dev \
 		libreadline-dev \
+		libsqlite3-dev \
 		libssl-dev \
 		libxml2-dev \
 		libxslt-dev \
