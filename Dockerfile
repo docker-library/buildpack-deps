@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
 		libglib2.0-dev \
 		libjpeg-dev \
 		libmagickcore-dev \
+		libmagickwand-dev \
 		libmysqlclient-dev \
 		libncurses-dev \
 		libpq-dev \
