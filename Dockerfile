@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
 		libbz2-dev \
 		libcurl4-openssl-dev \
 		libevent-dev \
+		libffi-dev \
 		libglib2.0-dev \
 		libjpeg-dev \
 		libmagickcore-dev \
