@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
 		libxml2-dev \
 		libxslt-dev \
 		zlib1g-dev \
-	&& apt-get clean && rm -rf /var/lib/apt/lists/
+	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y \
 		bzr \
@@ -30,4 +30,4 @@ RUN apt-get update && apt-get install -y \
 		git \
 		mercurial \
 		subversion \
-	&& apt-get clean && rm -rf /var/lib/apt/lists/
+	&& apt-get clean && rm -rf /var/lib/apt/lists/*
