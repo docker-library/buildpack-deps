@@ -21,11 +21,13 @@ RUN apt-get update && apt-get install -y \
 		libssl-dev \
 		libxml2-dev \
 		libxslt-dev \
-		zlib1g-dev
+		zlib1g-dev \
+	&& apt-get clean && rm -rf /var/lib/apt/lists/
 
 RUN apt-get update && apt-get install -y \
 		bzr \
 		cvs \
 		git \
 		mercurial \
-		subversion
+		subversion \
+	&& apt-get clean && rm -rf /var/lib/apt/lists/
