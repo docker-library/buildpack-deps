@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
 		libssl-dev \
 		libxml2-dev \
 		libxslt-dev \
+		libyaml-dev \
 		zlib1g-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
