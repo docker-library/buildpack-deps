@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y \
 		libmysqlclient-dev \
 		libncurses-dev \
 		libpq-dev \
-		libpq-dev \
 		libreadline-dev \
 		libsqlite3-dev \
 		libssl-dev \
