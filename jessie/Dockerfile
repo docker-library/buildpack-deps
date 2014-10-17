@@ -29,4 +29,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 		git \
 		mercurial \
 		subversion \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf \
+		/var/lib/apt/lists/* \
+		/tmp/* \
+		/var/tmp/* \
+		/usr/share/man/* \
+		/usr/share/info/* \
+		/var/cache/man/* \
+		/var/cache/apt/* \
+		/usr/share/doc/* \
+	&& find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en_US' |xargs rm -r
