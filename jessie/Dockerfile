@@ -1,6 +1,8 @@
 FROM debian:jessie
 
-RUN apt-get update && apt-get install -y \
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get install --no-install-recommends -y \
 		autoconf \
 		build-essential \
 		imagemagick \
@@ -22,12 +24,18 @@ RUN apt-get update && apt-get install -y \
 		libxslt-dev \
 		libyaml-dev \
 		zlib1g-dev \
-	&& rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get install -y \
 		bzr \
 		cvs \
 		git \
 		mercurial \
 		subversion \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf \
+		/var/lib/apt/lists/* \
+		/tmp/* \
+		/var/tmp/* \
+		/usr/share/man/* \
+		/usr/share/info/* \
+		/var/cache/man/* \
+		/var/cache/apt/* \
+		/usr/share/doc/* \
+	&& find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en_US' |xargs rm -r
