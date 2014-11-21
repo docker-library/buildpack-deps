@@ -17,9 +17,9 @@ echo '# maintainer: InfoSiftr <github@infosiftr.com> (@infosiftr)'
 for version in "${versions[@]}"; do
 	versionAliases=( $version ${aliases[$version]} )
 	
-	echo
 	for variant in micro; do
-		commit="$(git log -1 --format='format:%H' "$version/$variant")"
+		commit="$(git log -1 --format='format:%H' -- "$version/$variant")"
+		echo
 		for va in "${versionAliases[@]}"; do
 			if [ "$va" = 'latest' ]; then
 				va="$variant"
@@ -30,7 +30,8 @@ for version in "${versions[@]}"; do
 		done
 	done
 	
-	commit="$(git log -1 --format='format:%H' "$version")"
+	commit="$(git log -1 --format='format:%H' -- "$version")"
+	echo
 	for va in "${versionAliases[@]}"; do
 		echo "$va: ${url}@${commit} $version"
 	done
