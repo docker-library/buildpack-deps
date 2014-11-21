@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM buildpack-deps:jessie-micro
 
 RUN apt-get update && apt-get install -y \
 		autoconf \
@@ -22,16 +22,4 @@ RUN apt-get update && apt-get install -y \
 		libxslt-dev \
 		libyaml-dev \
 		zlib1g-dev \
-	&& rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get install -y \
-		bzr \
-		cvs \
-		git \
-		mercurial \
-		subversion \
-	&& rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get install -y \
-		curl \
 	&& rm -rf /var/lib/apt/lists/*
