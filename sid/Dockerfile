@@ -1,4 +1,4 @@
-FROM buildpack-deps:sid-micro
+FROM buildpack-deps:sid-scm
 
 RUN apt-get update && apt-get install -y \
 		autoconf \

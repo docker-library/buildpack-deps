@@ -1,4 +1,4 @@
-FROM buildpack-deps:wheezy-micro
+FROM buildpack-deps:wheezy-scm
 
 RUN apt-get update && apt-get install -y \
 		autoconf \
