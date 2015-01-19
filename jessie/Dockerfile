@@ -1,4 +1,4 @@
-FROM buildpack-deps:jessie-micro
+FROM buildpack-deps:jessie-scm
 
 RUN apt-get update && apt-get install -y \
 		autoconf \

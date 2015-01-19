@@ -17,7 +17,7 @@ echo '# maintainer: InfoSiftr <github@infosiftr.com> (@infosiftr)'
 for version in "${versions[@]}"; do
 	versionAliases=( $version ${aliases[$version]} )
 	
-	for variant in micro; do
+	for variant in curl scm; do
 		commit="$(git log -1 --format='format:%H' -- "$version/$variant")"
 		echo
 		for va in "${versionAliases[@]}"; do
