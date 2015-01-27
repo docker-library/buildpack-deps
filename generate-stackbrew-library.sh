@@ -10,7 +10,7 @@ cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 versions=( */ )
 versions=( "${versions[@]%/}" )
-url='git://github.com/docker-library/docker-buildpack-deps'
+url='git://github.com/docker-library/buildpack-deps'
 
 echo '# maintainer: InfoSiftr <github@infosiftr.com> (@infosiftr)'
 
