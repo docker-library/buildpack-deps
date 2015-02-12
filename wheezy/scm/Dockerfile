@@ -1,4 +1,4 @@
-FROM buildpack-deps:wheezy-curl
+FROM registry.docker/buildpack-deps:wheezy-curl
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		bzr \
