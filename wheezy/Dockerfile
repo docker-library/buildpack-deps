@@ -1,6 +1,6 @@
 FROM buildpack-deps:wheezy-scm
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
 		autoconf \
 		build-essential \
 		imagemagick \
@@ -22,4 +22,4 @@ RUN apt-get update && apt-get install -y \
 		libxslt-dev \
 		libyaml-dev \
 		zlib1g-dev \
-	&& rm -rf /var/lib/apt/lists/*
+	&& apt-get clean && rm -rf /var/lib/apt/lists/*
