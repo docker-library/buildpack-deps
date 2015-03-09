@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
 		libffi-dev \
 		libglib2.0-dev \
 		libjpeg-dev \
+		liblzma-dev \
 		libmagickcore-dev \
 		libmagickwand-dev \
 		libmysqlclient-dev \
