@@ -1,7 +1,7 @@
-FROM debian:sid
+FROM vicamo/debian:sid-armel
 
-RUN apt-get update && \
-	apt-get install -y --no-install-recommends \
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
 		ca-certificates \
 		curl \
 		wget \

@@ -1,6 +1,6 @@
-FROM buildpack-deps:sid-scm
+FROM vicamo/buildpack-deps:jessie-s390x-scm
 
-RUN apt-get update && \
+RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		autoconf \
 		build-essential \
