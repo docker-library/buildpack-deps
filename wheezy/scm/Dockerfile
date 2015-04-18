@@ -1,9 +1,11 @@
 FROM buildpack-deps:wheezy-curl
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
 		bzr \
 		git \
 		mercurial \
 		openssh-client \
 		subversion \
-	&& rm -rf /var/lib/apt/lists/*
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/*_dists_*
