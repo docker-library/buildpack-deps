@@ -1,5 +1,7 @@
 FROM buildpack-deps:squeeze-curl
 
+MAINTAINER vicamo@gmail.com
+
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		bzr \

@@ -1,7 +1,5 @@
 FROM vicamo/ubuntu-core:vivid-arm64
 
-MAINTAINER vicamo@gmail.com
-
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		ca-certificates \

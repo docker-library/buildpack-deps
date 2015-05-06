@@ -1,5 +1,7 @@
 FROM debian:wheezy
 
+MAINTAINER vicamo@gmail.com
+
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		ca-certificates \
