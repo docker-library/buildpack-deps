@@ -1,13 +1,1 @@
-FROM buildpack-deps:jessie-curl
-
-MAINTAINER vicamo@gmail.com
-
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends \
-		bzr \
-		git \
-		mercurial \
-		openssh-client \
-		subversion \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*_dists_*
+FROM buildpack-deps:jessie-scm
