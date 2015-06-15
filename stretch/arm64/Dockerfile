@@ -1,4 +1,4 @@
-FROM vicamo/buildpack-deps:stretch-arm46-scm
+FROM vicamo/buildpack-deps:stretch-arm64-scm
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
