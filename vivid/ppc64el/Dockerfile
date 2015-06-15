@@ -1,4 +1,4 @@
-FROM vicamo/buildpack-deps:vivid-powerpc-scm
+FROM vicamo/buildpack-deps:vivid-ppc64el-scm
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

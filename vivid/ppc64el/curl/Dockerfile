@@ -1,4 +1,4 @@
-FROM vicamo/ubuntu-core:trusty-powerpc
+FROM vicamo/ubuntu-core:vivid-ppc64el
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

@@ -1,4 +1,4 @@
-FROM vicamo/buildpack-deps:trusty-powerpc-curl
+FROM vicamo/buildpack-deps:trusty-ppc64el-curl
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
