@@ -1,7 +1,9 @@
-FROM ubuntu-debootstrap:trusty
+FROM buildpack-deps:SUITE-curl
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-		ca-certificates \
-		curl \
-		wget \
+		bzr \
+		git \
+		mercurial \
+		openssh-client \
+		subversion \
 	&& rm -rf /var/lib/apt/lists/*
