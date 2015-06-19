@@ -2,9 +2,12 @@ FROM buildpack-deps:jessie-scm
 
 RUN apt-get update && apt-get install -y \
 		autoconf \
-		build-essential \
+		bzip2 \
+		g++ \
+		gcc \
 		imagemagick \
 		libbz2-dev \
+		libc6-dev \
 		libcurl4-openssl-dev \
 		libevent-dev \
 		libffi-dev \
@@ -22,5 +25,8 @@ RUN apt-get update && apt-get install -y \
 		libxml2-dev \
 		libxslt-dev \
 		libyaml-dev \
+		make \
+		patch \
+		xz-utils \
 		zlib1g-dev \
 	&& rm -rf /var/lib/apt/lists/*
