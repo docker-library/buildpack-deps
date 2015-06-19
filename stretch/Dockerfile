@@ -1,8 +1,10 @@
 FROM buildpack-deps:stretch-scm
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
 		autoconf \
+		automake \
 		bzip2 \
+		file \
 		g++ \
 		gcc \
 		imagemagick \
@@ -22,6 +24,7 @@ RUN apt-get update && apt-get install -y \
 		libreadline-dev \
 		libsqlite3-dev \
 		libssl-dev \
+		libtool \
 		libxml2-dev \
 		libxslt-dev \
 		libyaml-dev \
