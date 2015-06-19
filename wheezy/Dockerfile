@@ -1,8 +1,6 @@
-FROM buildpack-deps:wheezy-scm
+FROM buildpack-deps:wheezy-gcc
 
 RUN apt-get update && apt-get install -y \
-		autoconf \
-		build-essential \
 		imagemagick \
 		libbz2-dev \
 		libcurl4-openssl-dev \

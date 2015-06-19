@@ -1,8 +1,6 @@
-FROM buildpack-deps:jessie-scm
+FROM buildpack-deps:jessie-gcc
 
 RUN apt-get update && apt-get install -y \
-		autoconf \
-		build-essential \
 		imagemagick \
 		libbz2-dev \
 		libcurl4-openssl-dev \
