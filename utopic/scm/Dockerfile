@@ -6,4 +6,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		mercurial \
 		openssh-client \
 		subversion \
+		nano \
 	&& rm -rf /var/lib/apt/lists/*
