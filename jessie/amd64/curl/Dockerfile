@@ -1,1 +1,1 @@
-FROM debian:jessie-curl
+FROM buildpack-deps:jessie-curl

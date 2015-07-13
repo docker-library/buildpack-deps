@@ -1,1 +1,1 @@
-FROM debian:squeeze-curl
+FROM buildpack-deps:squeeze-curl

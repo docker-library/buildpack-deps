@@ -1,1 +1,1 @@
-FROM debian:wheezy-curl
+FROM buildpack-deps:wheezy-curl

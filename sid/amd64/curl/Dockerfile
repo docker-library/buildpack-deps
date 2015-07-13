@@ -1,1 +1,1 @@
-FROM debian:sid-curl
+FROM buildpack-deps:sid-curl

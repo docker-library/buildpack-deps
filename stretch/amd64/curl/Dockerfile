@@ -1,1 +1,1 @@
-FROM debian:stretch-curl
+FROM buildpack-deps:stretch-curl
