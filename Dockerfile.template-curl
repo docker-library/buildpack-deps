@@ -1,4 +1,4 @@
-FROM vicamo/ubuntu-debootstrap:utopic-armhf
+FROM vicamo/DIST:SUITE-ARCH
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

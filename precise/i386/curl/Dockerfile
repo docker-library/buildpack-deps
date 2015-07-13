@@ -1,4 +1,4 @@
-FROM vicamo/ubuntu-core:precise-i386
+FROM vicamo/ubuntu-debootstrap:precise-i386
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

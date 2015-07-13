@@ -1,4 +1,4 @@
-FROM vicamo/ubuntu-core:vivid-arm64
+FROM vicamo/ubuntu-debootstrap:vivid-arm64
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

@@ -1,4 +1,4 @@
-FROM vicamo/ubuntu-core:trusty-armhf
+FROM vicamo/ubuntu-debootstrap:trusty-armhf
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

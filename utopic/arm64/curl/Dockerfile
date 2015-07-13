@@ -1,4 +1,4 @@
-FROM vicamo/ubuntu-core:utopic-arm64
+FROM vicamo/ubuntu-debootstrap:utopic-arm64
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

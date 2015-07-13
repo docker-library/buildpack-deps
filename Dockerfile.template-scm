@@ -1,9 +1,11 @@
-FROM vicamo/ubuntu-debootstrap:utopic-armhf
+FROM vicamo/buildpack-deps:SUITE-ARCH-curl
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		ca-certificates \
-		curl \
-		wget \
+		bzr \
+		git \
+		mercurial \
+		openssh-client \
+		subversion \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*_dists_*

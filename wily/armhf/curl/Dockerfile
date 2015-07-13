@@ -1,4 +1,4 @@
-FROM vicamo/ubuntu-core:wily-armhf
+FROM vicamo/ubuntu-debootstrap:wily-armhf
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
