@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		libsqlite3-dev \
 		libssl-dev \
 		libtool \
+		libwebp-dev \
 		libxml2-dev \
 		libxslt-dev \
 		libyaml-dev \
