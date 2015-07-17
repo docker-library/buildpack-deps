@@ -79,12 +79,9 @@ endef
 
 define do-docker-tag
 @echo "$@ <= docker tagging $(PRIVATE_PATH)";
-$(if $(strip $(PRIVATE_TAGS)), \
-  $(hide) for tag in $(PRIVATE_TAGS); do \
-    $(DOCKER) tag -f $(DOCKER_USER)/$(DOCKER_REPO):$(PRIVATE_TARGET) $(DOCKER_USER)/$(DOCKER_REPO):$${tag}; \
-  done, \
-  @echo "No additional tags to do" \
-)
+$(hide) for tag in $(PRIVATE_TAGS); do \
+  $(DOCKER) tag -f $(DOCKER_USER)/$(DOCKER_REPO):$(PRIVATE_TARGET) $(DOCKER_USER)/$(DOCKER_REPO):$${tag}; \
+done
 
 endef
 
