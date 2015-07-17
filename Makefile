@@ -8,9 +8,9 @@ endif
 
 LATEST := jessie
 
-DOCKER_REPO := buildpack-deps
-DOCKER_USER := $(shell docker info | awk '/^Username:/ { print $$2 }')
 DOCKER ?= docker
+DOCKER_REPO := buildpack-deps
+DOCKER_USER := $(shell $(DOCKER) info | awk '/^Username:/ { print $$2 }')
 
 # $(1): relative directory path, e.g. "jessie/amd64"
 define target-name-from-path
@@ -56,7 +56,7 @@ endef
 
 define do-docker-build
 @echo "$@ <= docker building $(PRIVATE_PATH)";
-$(hide) if [ -n "$(FORCE)" -o -z "$$(docker inspect $(DOCKER_USER)/$(DOCKER_REPO):$(PRIVATE_TARGET) 2>/dev/null | grep Created)" ]; then \
+$(hide) if [ -n "$(FORCE)" -o -z "$$($(DOCKER) inspect $(DOCKER_USER)/$(DOCKER_REPO):$(PRIVATE_TARGET) 2>/dev/null | grep Created)" ]; then \
   $(DOCKER) build -t $(DOCKER_USER)/$(DOCKER_REPO):$(PRIVATE_TARGET) $(PRIVATE_PATH); \
 fi
 
