@@ -72,9 +72,9 @@ $(eval suite := $(call suite-name-from-path,$(1)))
 $(eval arch := $(call arch-name-from-path,$(1)))
 $(eval func := $(call func-name-from-path,$(1)))
 
-.PHONY: $(target) bulid-$(target) tag-$(target)
+.PHONY: $(target) build-$(target) tag-$(target)
 all: $(target)
-$(target): bulid-$(target) tag-$(target)
+$(target): build-$(target) tag-$(target)
 	@echo "$$@ done"
 
 build-$(target): PRIVATE_TARGET := $(target)
