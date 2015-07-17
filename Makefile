@@ -6,6 +6,8 @@ else
   hide := @
 endif
 
+LATEST := jessie
+
 DOCKER_REPO := buildpack-deps
 DOCKER_USER := $(shell docker info | awk '/^Username:/ { print $$2 }')
 DOCKER ?= docker
@@ -49,7 +51,7 @@ endef
 # $(2): arch
 # $(3): func
 define enumerate-additional-tags-for
-$(if $(filter amd64,$(2)),$(1)$(if $(3),-$(3)))
+$(if $(filter amd64,$(2)),$(1)$(if $(3),-$(3))) $(if $(filter $(LATEST),$(1)),latest-$(2)$(if $(3),-$(3)) $(if $(filter amd64,$(2)),latest$(if $(3),-$(3))))
 endef
 
 define do-docker-build
