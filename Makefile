@@ -111,8 +111,11 @@ $(eval suite := $(call suite-name-from-path,$(1)))
 $(eval arch := $(call arch-name-from-path,$(1)))
 $(eval func := $(call func-name-from-path,$(1)))
 
-.PHONY: $(target)
+.PHONY: $(target) $(suite) $(arch) $(func)
 all: $(target)
+$(suite): $(target)
+$(arch): $(target)
+$(if $(func),$(func): $(target))
 $(target):
 	@echo "$$@ done"
 
@@ -132,3 +135,7 @@ $(foreach f,$(shell find . -type f -name Dockerfile | cut -d/ -f2-), \
     $(eval $(call define-target-from-path,$(path))) \
   ) \
 )
+
+.PHONY: debian ubuntu
+debian: squeeze wheezy jessie stretch sid
+ubuntu: precise trusty utopic vivid wily
