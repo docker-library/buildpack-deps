@@ -12,6 +12,7 @@ versions=( "${versions[@]%/}" )
 debian="$(curl -fsSL 'https://github.com/docker-library/official-images/blob/master/library/debian')"
 ubuntu="$(curl -fsSL 'https://github.com/docker-library/official-images/blob/master/library/ubuntu-debootstrap')"
 
+travisEnv=
 for version in "${versions[@]}"; do
 	if echo "$debian" | grep -q "$version:"; then
 		dist='debian'
@@ -30,4 +31,8 @@ for version in "${versions[@]}"; do
 			s!SUITE!'"$version"'!g;
 		' "$src" > "$trg" )
 	done
+	travisEnv+='\n  - VERSION='"$version"
 done
+
+travis="$(awk -v 'RS=\n\n' '$1 == "env:" { $0 = "env:'"$travisEnv"'" } { printf "%s%s", $0, RS }' .travis.yml)"
+echo "$travis" > .travis.yml
