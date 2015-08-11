@@ -26,6 +26,7 @@ RUN apt-get update \
 		libsqlite3-dev \
 		libssl-dev \
 		libtool \
+		libwebp-dev \
 		libxml2-dev \
 		libxslt-dev \
 		libyaml-dev \
