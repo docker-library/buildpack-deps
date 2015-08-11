@@ -12,6 +12,9 @@ DOCKER ?= docker
 DOCKER_REPO := buildpack-deps
 DOCKER_USER := $(shell $(DOCKER) info | awk '/^Username:/ { print $$2 }')
 
+DEBIAN_SUITES := wheezy jessie stretch sid
+UBUNTU_SUITES := precise trusty vivid wily
+
 # $(1): relative directory path, e.g. "jessie/amd64"
 define target-name-from-path
 $(subst /,-,$(1))
@@ -54,6 +57,29 @@ define enumerate-additional-tags-for
 $(if $(filter amd64,$(2)),$(1)$(if $(3),-$(3))) $(if $(filter $(LATEST),$(1)),latest-$(2)$(if $(3),-$(3)) $(if $(filter amd64,$(2)),latest$(if $(3),-$(3))))
 endef
 
+define do-dockerfile
+$(hide) if [ -n "$(grep '^# GENERATED' $@)" ]; then \
+  echo "$@ <= $<"; \
+  sed 's!DIST!$(PRIVATE_DIST)!g; s!SUITE!$(PRIVATE_SUITE)!g; s!ARCH!$(PRIVATE_ARCH)!g;' "$<" > "$@"; \
+else \
+  echo "$@ is not automatically generated. Skipping ..."; \
+fi
+endef
+
+# $(1): relative directory path, e.g. "jessie/amd64", "jessie/amd64/scm"
+# $(2): target name, e.g. jessie-amd64-scm
+# $(3): suite name, e.g. jessie
+# $(4): arch name, e.g. amd64
+# $(5): func name, e.g. scm
+define define-dockerfile-target
+$(1)/Dockerfile: PRIVATE_DIST := $(if $(filter $(DEBIAN_SUITES),$(3)),debian,ubuntu-debootstrap)
+$(1)/Dockerfile: PRIVATE_SUITE := $(3)
+$(1)/Dockerfile: PRIVATE_ARCH := $(4)
+$(1)/Dockerfile: Dockerfile.template$(if $(5),-$(5))
+	$$(call do-dockerfile)
+
+endef
+
 define do-docker-build
 @echo "$@ <= docker building $(PRIVATE_PATH)";
 $(hide) if [ -n "$(FORCE)" -o -z "$$($(DOCKER) inspect $(DOCKER_USER)/$(DOCKER_REPO):$(PRIVATE_TARGET) 2>/dev/null | grep Created)" ]; then \
@@ -72,6 +98,7 @@ define define-docker-build-target
 $(2): docker-build-$(2)
 docker-build-$(2): PRIVATE_TARGET := $(2)
 docker-build-$(2): PRIVATE_PATH := $(1)
+docker-build-$(2): $(1)/Dockerfile
 docker-build-$(2): $(call enumerate-build-dep-for-docker-build,$(1))
 	$$(call do-docker-build)
 
@@ -110,12 +137,14 @@ $(eval func := $(call func-name-from-path,$(1)))
 
 .PHONY: $(target) $(suite) $(arch) $(func)
 all: $(target)
+dockerfiles: $(1)/Dockerfile
 $(suite): $(target)
 $(arch): $(target)
 $(if $(func),$(func): $(target))
 $(target):
 	@echo "$$@ done"
 
+$(call define-dockerfile-target,$(1),$(target),$(suite),$(arch),$(func))
 $(call define-docker-build-target,$(1),$(target),$(suite),$(arch),$(func))
 $(if $(strip $(call enumerate-additional-tags-for,$(suite),$(arch),$(func))), \
   $(call define-docker-tag-target,$(1),$(target),$(suite),$(arch),$(func)))
@@ -134,5 +163,5 @@ $(foreach f,$(shell find . -type f -name Dockerfile | cut -d/ -f2-), \
 )
 
 .PHONY: debian ubuntu
-debian: wheezy jessie stretch sid
-ubuntu: precise trusty vivid wily
+debian: $(DEBIAN_SUITES)
+ubuntu: $(UBUNTU_SUITES)

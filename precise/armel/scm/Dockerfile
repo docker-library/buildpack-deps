@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-scm
 FROM vicamo/buildpack-deps:precise-armel-curl
 
 RUN apt-get update \

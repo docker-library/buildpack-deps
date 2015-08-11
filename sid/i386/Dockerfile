@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template
 FROM vicamo/buildpack-deps:sid-i386-scm
 
 RUN apt-get update \

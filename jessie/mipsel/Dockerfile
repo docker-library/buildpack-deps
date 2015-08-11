@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template
 FROM vicamo/buildpack-deps:jessie-mipsel-scm
 
 RUN apt-get update \

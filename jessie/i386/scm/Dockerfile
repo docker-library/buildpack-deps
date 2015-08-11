@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-scm
 FROM vicamo/buildpack-deps:jessie-i386-curl
 
 RUN apt-get update \

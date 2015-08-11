@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/ubuntu-debootstrap:precise-powerpc
 
 RUN apt-get update \

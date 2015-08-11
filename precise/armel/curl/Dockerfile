@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/ubuntu-debootstrap:precise-armel
 
 RUN apt-get update \

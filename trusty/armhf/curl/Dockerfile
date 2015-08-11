@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/ubuntu-debootstrap:trusty-armhf
 
 RUN apt-get update \

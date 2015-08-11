@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template
 FROM vicamo/buildpack-deps:jessie-arm64-scm
 
 RUN apt-get update \

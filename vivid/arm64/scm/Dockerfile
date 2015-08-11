@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-scm
 FROM vicamo/buildpack-deps:vivid-arm64-curl
 
 RUN apt-get update \

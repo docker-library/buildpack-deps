@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/ubuntu-debootstrap:vivid-armhf
 
 RUN apt-get update \

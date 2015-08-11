@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template
 FROM vicamo/buildpack-deps:trusty-armhf-scm
 
 RUN apt-get update \

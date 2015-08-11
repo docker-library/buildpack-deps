@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template
 FROM vicamo/buildpack-deps:vivid-armhf-scm
 
 RUN apt-get update \

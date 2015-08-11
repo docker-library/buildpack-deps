@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/debian:jessie-mipsel
 
 RUN apt-get update \

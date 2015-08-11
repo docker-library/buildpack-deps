@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template
 FROM vicamo/buildpack-deps:wily-arm64-scm
 
 RUN apt-get update \

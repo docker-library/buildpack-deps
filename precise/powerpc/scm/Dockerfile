@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-scm
 FROM vicamo/buildpack-deps:precise-powerpc-curl
 
 RUN apt-get update \
