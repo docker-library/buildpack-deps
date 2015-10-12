@@ -10,14 +10,14 @@ fi
 versions=( "${versions[@]%/}" )
 
 debian="$(curl -fsSL 'https://github.com/docker-library/official-images/blob/master/library/debian')"
-ubuntu="$(curl -fsSL 'https://github.com/docker-library/official-images/blob/master/library/ubuntu-debootstrap')"
+ubuntu="$(curl -fsSL 'https://github.com/docker-library/official-images/blob/master/library/ubuntu')"
 
 travisEnv=
 for version in "${versions[@]}"; do
 	if echo "$debian" | grep -q "$version:"; then
 		dist='debian'
 	elif echo "$ubuntu" | grep -q "$version:"; then
-		dist='ubuntu-debootstrap'
+		dist='ubuntu'
 	else
 		echo >&2 "error: cannot determine repo for '$version'"
 		exit 1

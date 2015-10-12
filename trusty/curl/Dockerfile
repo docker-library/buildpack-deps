@@ -1,4 +1,4 @@
-FROM ubuntu-debootstrap:trusty
+FROM ubuntu:trusty
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
