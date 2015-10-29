@@ -1,0 +1,37 @@
+language: bash
+
+# for secret experimental features ;)
+sudo: 9000
+
+env:
+  - VERSION=jessie
+  - VERSION=precise
+  - VERSION=sid
+  - VERSION=stretch
+  - VERSION=trusty
+  - VERSION=vivid
+  - VERSION=wheezy
+  - VERSION=wily
+
+install:
+  - git clone https://github.com/docker-library/official-images.git ~/official-images
+
+before_script:
+  - env | sort
+  - cd "$VERSION"
+  - export image="buildpack-deps:$VERSION"
+
+script:
+  - test "$(head -n1 Dockerfile)" = "FROM $image-scm"
+    && test "$(head -n1 scm/Dockerfile)" = "FROM $image-curl"
+    && [[ "$(head -n1 curl/Dockerfile)" == 'FROM debian:'*
+       || "$(head -n1 curl/Dockerfile)" == 'FROM ubuntu'*':'* ]]
+  - docker build -t "$image-curl" curl
+  - docker build -t "$image-scm" scm
+  - docker build -t "$image" .
+  - ~/official-images/test/run.sh "$image"
+
+after_script:
+  - docker images
+
+# vim:set et ts=2 sw=2:
