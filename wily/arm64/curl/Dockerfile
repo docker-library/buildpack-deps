@@ -1,5 +1,5 @@
 # GENERATED FROM Dockerfile.template-curl
-FROM vicamo/ubuntu-debootstrap:wily-arm64
+FROM vicamo/ubuntu:wily-arm64
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

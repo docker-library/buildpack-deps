@@ -14,10 +14,8 @@ env:
   - VERSION=jessie/powerpc
   - VERSION=jessie/s390x
   - VERSION=precise/amd64
-  - VERSION=precise/armel
   - VERSION=precise/armhf
   - VERSION=precise/i386
-  - VERSION=precise/powerpc
   - VERSION=sid/amd64
   - VERSION=sid/arm64
   - VERSION=sid/armel
@@ -40,12 +38,10 @@ env:
   - VERSION=trusty/arm64
   - VERSION=trusty/armhf
   - VERSION=trusty/i386
-  - VERSION=trusty/powerpc
   - VERSION=vivid/amd64
   - VERSION=vivid/arm64
   - VERSION=vivid/armhf
   - VERSION=vivid/i386
-  - VERSION=vivid/powerpc
   - VERSION=wheezy/amd64
   - VERSION=wheezy/armel
   - VERSION=wheezy/armhf
@@ -57,7 +53,6 @@ env:
   - VERSION=wily/arm64
   - VERSION=wily/armhf
   - VERSION=wily/i386
-  - VERSION=wily/powerpc
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images

@@ -74,7 +74,7 @@ endef
 # $(4): arch name, e.g. amd64
 # $(5): func name, e.g. scm
 define define-dockerfile-target
-$(1)/Dockerfile: PRIVATE_DIST := $(if $(filter $(DEBIAN_SUITES),$(3)),debian,ubuntu-debootstrap)
+$(1)/Dockerfile: PRIVATE_DIST := $(if $(filter $(DEBIAN_SUITES),$(3)),debian,ubuntu)
 $(1)/Dockerfile: PRIVATE_SUITE := $(3)
 $(1)/Dockerfile: PRIVATE_ARCH := $(4)
 $(1)/Dockerfile: Dockerfile.template$(if $(5),-$(5))

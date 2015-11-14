@@ -1,5 +1,5 @@
 # GENERATED FROM Dockerfile.template-curl
-FROM vicamo/ubuntu-debootstrap:precise-armhf
+FROM vicamo/ubuntu:precise-armhf
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

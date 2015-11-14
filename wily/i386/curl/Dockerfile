@@ -1,5 +1,5 @@
 # GENERATED FROM Dockerfile.template-curl
-FROM vicamo/ubuntu-debootstrap:wily-i386
+FROM vicamo/ubuntu:wily-i386
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
