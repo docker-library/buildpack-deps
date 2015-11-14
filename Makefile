@@ -12,6 +12,8 @@ DOCKER ?= docker
 DOCKER_REPO := buildpack-deps
 DOCKER_USER := $(shell $(DOCKER) info | awk '/^Username:/ { print $$2 }')
 
+SUITE_ARCH :=
+
 DEBIAN_SUITES := wheezy jessie stretch sid
 UBUNTU_SUITES := precise trusty vivid wily
 
@@ -135,6 +137,8 @@ $(eval suite := $(call suite-name-from-path,$(1)))
 $(eval arch := $(call arch-name-from-path,$(1)))
 $(eval func := $(call func-name-from-path,$(1)))
 
+SUITE_ARCH += $(suite)/$(arch)
+
 .PHONY: $(target) $(suite) $(arch) $(func)
 all: $(target)
 dockerfiles: $(1)/Dockerfile
@@ -151,7 +155,14 @@ $(if $(strip $(call enumerate-additional-tags-for,$(suite),$(arch),$(func))), \
 
 endef
 
-all:
+.PHONY: .travis.yml
+.travis.yml:
+	$(hide) travisEnv= ; \
+	$(foreach sa,$(sort $(SUITE_ARCH)),travisEnv+='\n  - VERSION='$(sa)); \
+	travis="$$(awk -v 'RS=\n\n' '$$1 == "env:" { $$0 = "env:'"$$travisEnv"'" } { printf "%s%s", $$0, RS }' $@)"; \
+	echo "$$travis" > $@
+
+all: .travis.yml
 	@echo "Build $(DOCKER_USER)/$(DOCKER_REPO) done"
 
 $(foreach f,$(shell find . -type f -name Dockerfile | cut -d/ -f2-), \

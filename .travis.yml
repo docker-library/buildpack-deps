@@ -1,0 +1,77 @@
+language: bash
+
+# for secret experimental features ;)
+sudo: 9000
+
+env:
+  - VERSION=jessie/amd64
+  - VERSION=jessie/arm64
+  - VERSION=jessie/armel
+  - VERSION=jessie/armhf
+  - VERSION=jessie/i386
+  - VERSION=jessie/mips
+  - VERSION=jessie/mipsel
+  - VERSION=jessie/powerpc
+  - VERSION=jessie/s390x
+  - VERSION=precise/amd64
+  - VERSION=precise/armel
+  - VERSION=precise/armhf
+  - VERSION=precise/i386
+  - VERSION=precise/powerpc
+  - VERSION=sid/amd64
+  - VERSION=sid/arm64
+  - VERSION=sid/armel
+  - VERSION=sid/armhf
+  - VERSION=sid/i386
+  - VERSION=sid/mips
+  - VERSION=sid/mipsel
+  - VERSION=sid/powerpc
+  - VERSION=sid/s390x
+  - VERSION=stretch/amd64
+  - VERSION=stretch/arm64
+  - VERSION=stretch/armel
+  - VERSION=stretch/armhf
+  - VERSION=stretch/i386
+  - VERSION=stretch/mips
+  - VERSION=stretch/mipsel
+  - VERSION=stretch/powerpc
+  - VERSION=stretch/s390x
+  - VERSION=trusty/amd64
+  - VERSION=trusty/arm64
+  - VERSION=trusty/armhf
+  - VERSION=trusty/i386
+  - VERSION=trusty/powerpc
+  - VERSION=vivid/amd64
+  - VERSION=vivid/arm64
+  - VERSION=vivid/armhf
+  - VERSION=vivid/i386
+  - VERSION=vivid/powerpc
+  - VERSION=wheezy/amd64
+  - VERSION=wheezy/armel
+  - VERSION=wheezy/armhf
+  - VERSION=wheezy/i386
+  - VERSION=wheezy/mips
+  - VERSION=wheezy/mipsel
+  - VERSION=wheezy/powerpc
+  - VERSION=wily/amd64
+  - VERSION=wily/arm64
+  - VERSION=wily/armhf
+  - VERSION=wily/i386
+  - VERSION=wily/powerpc
+
+install:
+  - git clone https://github.com/docker-library/official-images.git ~/official-images
+
+before_script:
+  - env | sort
+  - cd "$VERSION"
+  - export image="buildpack-deps:$VERSION"
+
+script:
+  - ../.travis.sh
+  - docker build -t "$image-curl" curl
+  - docker build -t "$image-scm" scm
+  - docker build -t "$image" .
+  - ~/official-images/test/run.sh "$image"
+
+# vim:set et ts=2 sw=2:
