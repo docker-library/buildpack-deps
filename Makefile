@@ -60,7 +60,7 @@ $(if $(filter amd64,$(2)),$(1)$(if $(3),-$(3))) $(if $(filter $(LATEST),$(1)),la
 endef
 
 define do-dockerfile
-$(hide) if [ -n "$(grep '^# GENERATED' $@)" ]; then \
+$(hide) if [ -n "$$(grep '^# GENERATED' $@)" ]; then \
   echo "$@ <= $<"; \
   sed 's!DIST!$(PRIVATE_DIST)!g; s!SUITE!$(PRIVATE_SUITE)!g; s!ARCH!$(PRIVATE_ARCH)!g;' "$<" > "$@"; \
 else \

@@ -14,6 +14,7 @@ RUN apt-get update \
 		libcurl4-openssl-dev \
 		libevent-dev \
 		libffi-dev \
+		libgeoip-dev \
 		libglib2.0-dev \
 		libjpeg-dev \
 		liblzma-dev \
@@ -21,6 +22,7 @@ RUN apt-get update \
 		libmagickwand-dev \
 		libmysqlclient-dev \
 		libncurses-dev \
+		libpng-dev \
 		libpq-dev \
 		libreadline-dev \
 		libsqlite3-dev \
