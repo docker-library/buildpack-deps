@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/debian:wheezy-s390
 
 RUN apt-get update \

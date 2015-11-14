@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/debian:wheezy-kfreebsd-amd64
 
 RUN apt-get update \

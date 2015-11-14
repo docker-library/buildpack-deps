@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/debian:sid-hurd-i386
 
 RUN apt-get update \

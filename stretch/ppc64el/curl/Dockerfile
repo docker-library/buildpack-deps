@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/debian:stretch-ppc64el
 
 RUN apt-get update \

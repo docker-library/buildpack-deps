@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/debian:jessie-ppc64el
 
 RUN apt-get update \

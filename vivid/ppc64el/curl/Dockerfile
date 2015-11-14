@@ -1,4 +1,5 @@
-FROM vicamo/ubuntu-debootstrap:vivid-ppc64el
+# GENERATED FROM Dockerfile.template-curl
+FROM vicamo/ubuntu:vivid-ppc64el
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

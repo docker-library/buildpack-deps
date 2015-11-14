@@ -1,4 +1,5 @@
-FROM vicamo/ubuntu-debootstrap:trusty-ppc64el
+# GENERATED FROM Dockerfile.template-curl
+FROM vicamo/ubuntu:trusty-ppc64el
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

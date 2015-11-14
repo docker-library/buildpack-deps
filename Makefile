@@ -139,20 +139,22 @@ $(eval func := $(call func-name-from-path,$(1)))
 
 SUITE_ARCH += $(suite)/$(arch)
 
-.PHONY: $(target) $(suite) $(arch) $(func)
-all: $(target)
-dockerfiles: $(1)/Dockerfile
-$(suite): $(target)
-$(arch): $(target)
-$(if $(func),$(func): $(target))
+.PHONY: $(target)
 $(target):
 	@echo "$$@ done"
 
+dockerfiles: $(1)/Dockerfile
 $(call define-dockerfile-target,$(1),$(target),$(suite),$(arch),$(func))
-$(call define-docker-build-target,$(1),$(target),$(suite),$(arch),$(func))
-$(if $(strip $(call enumerate-additional-tags-for,$(suite),$(arch),$(func))), \
-  $(call define-docker-tag-target,$(1),$(target),$(suite),$(arch),$(func)))
 
+$(if $(wildcard $(1)/skip), \
+  $(info Skipping $(1): $(shell cat $(1)/skip)) \
+  , \
+  $(eval .PHONY: $(suite) $(arch) $(func)) \
+  $(eval all $(suite) $(arch) $(func): $(target)) \
+  $(call define-docker-build-target,$(1),$(target),$(suite),$(arch),$(func)) \
+  $(if $(strip $(call enumerate-additional-tags-for,$(suite),$(arch),$(func))), \
+    $(call define-docker-tag-target,$(1),$(target),$(suite),$(arch),$(func))) \
+)
 endef
 
 .PHONY: .travis.yml
@@ -167,10 +169,7 @@ all: .travis.yml
 
 $(foreach f,$(shell find . -type f -name Dockerfile | cut -d/ -f2-), \
   $(eval path := $(patsubst %/Dockerfile,%,$(f))) \
-  $(if $(wildcard $(path)/skip), \
-    $(info Skipping $(path): $(shell cat $(path)/skip)), \
-    $(eval $(call define-target-from-path,$(path))) \
-  ) \
+  $(eval $(call define-target-from-path,$(path))) \
 )
 
 .PHONY: debian ubuntu

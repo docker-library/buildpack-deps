@@ -1,4 +1,5 @@
-FROM vicamo/ubuntu-debootstrap:wily-ppc64el
+# GENERATED FROM Dockerfile.template-curl
+FROM vicamo/ubuntu:wily-ppc64el
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \

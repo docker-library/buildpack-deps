@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template-curl
 FROM vicamo/debian:wheezy-sparc
 
 RUN apt-get update \
