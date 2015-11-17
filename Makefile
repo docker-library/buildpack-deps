@@ -137,8 +137,6 @@ $(eval suite := $(call suite-name-from-path,$(1)))
 $(eval arch := $(call arch-name-from-path,$(1)))
 $(eval func := $(call func-name-from-path,$(1)))
 
-SUITE_ARCH += $(suite)/$(arch)
-
 .PHONY: $(target)
 $(target):
 	@echo "$$@ done"
@@ -149,6 +147,7 @@ $(call define-dockerfile-target,$(1),$(target),$(suite),$(arch),$(func))
 $(if $(wildcard $(1)/skip), \
   $(info Skipping $(1): $(shell cat $(1)/skip)) \
   , \
+  $(eval SUITE_ARCH += $(suite)/$(arch)) \
   $(eval .PHONY: $(suite) $(arch) $(func)) \
   $(eval all $(suite) $(arch) $(func): $(target)) \
   $(call define-docker-build-target,$(1),$(target),$(suite),$(arch),$(func)) \
