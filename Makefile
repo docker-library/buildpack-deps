@@ -135,4 +135,4 @@ $(foreach f,$(shell find . -type f -name Dockerfile | cut -d/ -f2-), \
 
 .PHONY: debian ubuntu
 debian: wheezy jessie stretch sid
-ubuntu: precise trusty utopic vivid wily
+ubuntu: precise trusty vivid wily
