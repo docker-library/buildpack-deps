@@ -1,0 +1,36 @@
+FROM buildpack-deps:SUITE-scm
+
+RUN apk update && apk upgrade && apk add \
+        autoconf \
+		automake \
+		bzip2 \
+		file \
+		g++ \
+		gcc \
+		imagemagick \
+		libbz2 \
+		libc-dev \
+		curl-dev \
+		libevent-dev \
+		libffi-dev \
+		geoip-dev \
+		glib-dev \
+		jpeg-dev \
+		mariadb-client \
+		ncurses-dev \
+		libpng-dev \
+		libpq \
+		readline-dev \
+		sqlite-dev \
+		openssl-dev \
+		libtool \
+		libwebp-dev \
+		libxml2-dev \
+		libxslt-dev \
+		yaml-dev \
+		make \
+		patch \
+		xz \
+		xz-dev \
+		zlib-dev \
+	&& rm -rf /var/cache/apk/*
