@@ -1,7 +1,7 @@
 FROM buildpack-deps:SUITE-curl
 
 # procps is very common in build systems, and is a reasonably small package
-RUN apk update && apk upgrade && apk add \
+RUN apk update && apk upgrade && apk add --no-cache \
 		bzr \
 		git \
 		mercurial \

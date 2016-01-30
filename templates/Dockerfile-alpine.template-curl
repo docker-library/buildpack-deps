@@ -1,6 +1,6 @@
 FROM DIST:SUITE
 
-RUN apk update && apk upgrade && apk add \
+RUN apk update && apk upgrade && apk add --no-cache \
 		ca-certificates \
 		curl \
 		wget \

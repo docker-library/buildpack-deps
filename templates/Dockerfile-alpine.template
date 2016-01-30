@@ -1,6 +1,6 @@
 FROM buildpack-deps:SUITE-scm
 
-RUN apk update && apk upgrade && apk add \
+RUN apk update && apk upgrade && apk add --no-cache \
         autoconf \
 		automake \
 		bzip2 \
