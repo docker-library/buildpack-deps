@@ -2,6 +2,7 @@ language: bash
 services: docker
 
 env:
+  - VERSION=3.3
   - VERSION=jessie
   - VERSION=precise
   - VERSION=sid
@@ -24,7 +25,8 @@ script:
   - test "$(head -n1 Dockerfile)" = "FROM $image-scm"
     && test "$(head -n1 scm/Dockerfile)" = "FROM $image-curl"
     && [[ "$(head -n1 curl/Dockerfile)" == 'FROM debian:'*
-       || "$(head -n1 curl/Dockerfile)" == 'FROM ubuntu'*':'* ]]
+       || "$(head -n1 curl/Dockerfile)" == 'FROM ubuntu'*':'*
+       || "$(head -n1 curl/Dockerfile)" == 'FROM alpine'*':'* ]]
   - docker build -t "$image-curl" curl
   - docker build -t "$image-scm" scm
   - docker build -t "$image" .
