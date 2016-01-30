@@ -2,6 +2,7 @@ language: bash
 services: docker
 
 env:
+  - VERSION=3.3
   - VERSION=jessie
   - VERSION=precise
   - VERSION=sid
