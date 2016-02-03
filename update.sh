@@ -23,7 +23,7 @@ for version in "${versions[@]}"; do
 		exit 1
 	fi
 	for variant in curl scm ''; do
-		src="Dockerfile.template${variant:+-$variant}"
+		src="Dockerfile${variant:+-$variant}.template"
 		trg="$version${variant:+/$variant}/Dockerfile"
 		mkdir -p "$(dirname "$trg")"
 		( set -x && sed '
