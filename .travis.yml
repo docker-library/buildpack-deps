@@ -7,7 +7,6 @@ env:
   - VERSION=sid
   - VERSION=stretch
   - VERSION=trusty
-  - VERSION=vivid
   - VERSION=wheezy
   - VERSION=wily
   - VERSION=xenial
