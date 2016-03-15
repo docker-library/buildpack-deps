@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eo pipefail
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
@@ -9,8 +9,8 @@ if [ ${#versions[@]} -eq 0 ]; then
 fi
 versions=( "${versions[@]%/}" )
 
-debian="$(curl -fsSL 'https://github.com/docker-library/official-images/blob/master/library/debian')"
-ubuntu="$(curl -fsSL 'https://github.com/docker-library/official-images/blob/master/library/ubuntu')"
+debian="$(curl -fsSL 'https://raw.githubusercontent.com/docker-library/official-images/master/library/debian')"
+ubuntu="$(curl -fsSL 'https://raw.githubusercontent.com/docker-library/official-images/master/library/ubuntu')"
 
 travisEnv=
 for version in "${versions[@]}"; do
