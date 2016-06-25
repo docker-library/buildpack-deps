@@ -14,9 +14,9 @@ ubuntu="$(curl -fsSL 'https://raw.githubusercontent.com/docker-library/official-
 
 travisEnv=
 for version in "${versions[@]}"; do
-	if echo "$debian" | grep -q "^$version:"; then
+	if echo "$debian" | grep -qE "\b$version\b"; then
 		dist='debian'
-	elif echo "$ubuntu" | grep -q "^$version:"; then
+	elif echo "$ubuntu" | grep -qE "\b$version\b"; then
 		dist='ubuntu'
 	else
 		echo >&2 "error: cannot determine repo for '$version'"
