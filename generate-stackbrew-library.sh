@@ -1,38 +1,76 @@
 #!/bin/bash
-set -e
+set -eu
 
-declare -A aliases
-aliases=(
+declare -A aliases=(
 	[jessie]='latest'
 )
 
+self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 versions=( */ )
 versions=( "${versions[@]%/}" )
-url='git://github.com/docker-library/buildpack-deps'
 
-echo '# maintainer: InfoSiftr <github@infosiftr.com> (@infosiftr)'
+# get the most recent commit which modified any of "$@"
+fileCommit() {
+	git log -1 --format='format:%H' HEAD -- "$@"
+}
+
+# get the most recent commit which modified "$1/Dockerfile" or any file COPY'd from "$1/Dockerfile"
+dirCommit() {
+	local dir="$1"; shift
+	(
+		cd "$dir"
+		fileCommit \
+			Dockerfile \
+			$(git show HEAD:./Dockerfile | awk '
+				toupper($1) == "COPY" {
+					for (i = 2; i < NF; i++) {
+						print $i
+					}
+				}
+			')
+	)
+}
+
+cat <<-EOH
+# this file is generated via https://github.com/docker-library/buildpack-deps/blob/$(fileCommit "$self")/$self
+
+Maintainers: Tianon Gravi <admwiggin@gmail.com> (@tianon),
+             Joseph Ferguson <yosifkit@gmail.com> (@yosifkit)
+GitRepo: https://github.com/docker-library/buildpack-deps.git
+EOH
+
+# prints "$2$1$3$1...$N"
+join() {
+	local sep="$1"; shift
+	local out; printf -v out "${sep//%/%%}%s" "$@"
+	echo "${out#$sep}"
+}
 
 for version in "${versions[@]}"; do
-	versionAliases=( $version ${aliases[$version]} )
-	
+	versionAliases=( $version ${aliases[$version]:-} )
+
 	for variant in curl scm; do
-		commit="$(cd "$version/$variant" && git log -1 --format='format:%H' -- Dockerfile $(awk 'toupper($1) == "COPY" { for (i = 2; i < NF; i++) { print $i } }' Dockerfile))"
+		commit="$(dirCommit "$version/$variant")"
+
+		variantAliases=( "${versionAliases[@]/%/-$variant}" )
+		variantAliases=( "${variantAliases[@]//latest-/}" )
+
 		echo
-		for va in "${versionAliases[@]}"; do
-			if [ "$va" = 'latest' ]; then
-				va="$variant"
-			else
-				va="$va-$variant"
-			fi
-			echo "$va: ${url}@${commit} $version/$variant"
-		done
+		cat <<-EOE
+			Tags: $(join ', ' "${variantAliases[@]}")
+			GitCommit: $commit
+			Directory: $version/$variant
+		EOE
 	done
-	
-	commit="$(cd "$version" && git log -1 --format='format:%H' -- Dockerfile $(awk 'toupper($1) == "COPY" { for (i = 2; i < NF; i++) { print $i } }' Dockerfile))"
+
+	commit="$(dirCommit "$version")"
+
 	echo
-	for va in "${versionAliases[@]}"; do
-		echo "$va: ${url}@${commit} $version"
-	done
+	cat <<-EOE
+		Tags: $(join ', ' "${versionAliases[@]}")
+		GitCommit: $commit
+		Directory: $version
+	EOE
 done
