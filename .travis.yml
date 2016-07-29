@@ -51,6 +51,10 @@ env:
   - VERSION=wily/arm64
   - VERSION=wily/armhf
   - VERSION=wily/i386
+  - VERSION=xenial/amd64
+  - VERSION=xenial/arm64
+  - VERSION=xenial/armhf
+  - VERSION=xenial/i386
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
