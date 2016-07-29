@@ -77,7 +77,7 @@ define define-dockerfile-target
 $(1)/Dockerfile: PRIVATE_DIST := $(if $(filter $(DEBIAN_SUITES),$(3)),debian,ubuntu)
 $(1)/Dockerfile: PRIVATE_SUITE := $(3)
 $(1)/Dockerfile: PRIVATE_ARCH := $(4)
-$(1)/Dockerfile: Dockerfile.template$(if $(5),-$(5))
+$(1)/Dockerfile: Dockerfile$(if $(5),-$(5)).template
 	$$(call do-dockerfile)
 
 endef
