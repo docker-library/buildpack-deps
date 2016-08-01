@@ -8,7 +8,6 @@ env:
   - VERSION=stretch
   - VERSION=trusty
   - VERSION=wheezy
-  - VERSION=wily
   - VERSION=xenial
 
 install:
