@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		libgeoip-dev \
 		libglib2.0-dev \
 		libjpeg-dev \
+		libkrb5-dev \
 		liblzma-dev \
 		libmagickcore-dev \
 		libmagickwand-dev \
