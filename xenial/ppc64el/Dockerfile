@@ -16,6 +16,7 @@ RUN apt-get update \
 		libdb-dev \
 		libevent-dev \
 		libffi-dev \
+		libgdbm-dev \
 		libgeoip-dev \
 		libglib2.0-dev \
 		libjpeg-dev \
