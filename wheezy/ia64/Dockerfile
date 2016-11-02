@@ -1,3 +1,4 @@
+# GENERATED FROM Dockerfile.template
 FROM vicamo/buildpack-deps:wheezy-ia64-scm
 
 RUN apt-get update \
