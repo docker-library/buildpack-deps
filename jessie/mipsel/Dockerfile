@@ -19,6 +19,7 @@ RUN apt-get update \
 		libgeoip-dev \
 		libglib2.0-dev \
 		libjpeg-dev \
+		libkrb5-dev \
 		liblzma-dev \
 		libmagickcore-dev \
 		libmagickwand-dev \
