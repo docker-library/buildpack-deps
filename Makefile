@@ -15,7 +15,7 @@ DOCKER_USER := $(shell $(DOCKER) info | awk '/^Username:/ { print $$2 }')
 SUITE_ARCH :=
 
 DEBIAN_SUITES := wheezy jessie stretch sid
-UBUNTU_SUITES := precise trusty vivid xenial
+UBUNTU_SUITES := precise trusty vivid xenial yakkety
 
 # $(1): relative directory path, e.g. "jessie/amd64"
 define target-name-from-path

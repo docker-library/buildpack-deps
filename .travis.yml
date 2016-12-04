@@ -47,6 +47,10 @@ env:
   - VERSION=xenial/arm64
   - VERSION=xenial/armhf
   - VERSION=xenial/i386
+  - VERSION=yakkety/amd64
+  - VERSION=yakkety/arm64
+  - VERSION=yakkety/armhf
+  - VERSION=yakkety/i386
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
