@@ -9,8 +9,8 @@ endif
 LATEST := jessie
 
 DOCKER ?= docker
-DOCKER_REPO := buildpack-deps
-DOCKER_USER := $(shell $(DOCKER) info | awk '/^Username:/ { print $$2 }')
+DOCKER_REPO ?= buildpack-deps
+DOCKER_USER ?= $(shell $(DOCKER) info | awk '/^Username:/ { print $$2 }')
 
 SUITE_ARCH :=
 
