@@ -147,7 +147,7 @@ $(target):
 dockerfiles: $(1)/Dockerfile
 $(call define-dockerfile-target,$(1),$(target),$(suite),$(arch),$(func))
 
-$(if $(wildcard $(1)/skip), \
+$(if $(if $(NO_SKIP),,$(wildcard $(1)/skip)), \
   $(info Skipping $(1): $(shell cat $(1)/skip)) \
   , \
   $(eval SUITE_ARCH += $(suite)/$(arch)) \
