@@ -87,12 +87,9 @@ matrix:
   - env: VERSION=wheezy/kfreebsd-i386
   allow_failures:
   - env: VERSION=sid/sparc
-  - env: VERSION=trusty/ppc64el
   - env: VERSION=wheezy/s390
   - env: VERSION=wheezy/sparc
-  - env: VERSION=xenial/ppc64el
   - env: VERSION=xenial/s390x
-  - env: VERSION=yakkety/ppc64el
   - env: VERSION=yakkety/s390x
 
 branches:
