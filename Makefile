@@ -9,8 +9,8 @@ endif
 LATEST := jessie
 
 DOCKER ?= docker
-DOCKER_REPO := buildpack-deps
-DOCKER_USER := $(shell $(DOCKER) info | awk '/^Username:/ { print $$2 }')
+DOCKER_REPO ?= buildpack-deps
+DOCKER_USER ?= $(shell $(DOCKER) info | awk '/^Username:/ { print $$2 }')
 
 SUITE_ARCH :=
 
@@ -49,7 +49,7 @@ endef
 
 # $(1): relative directory path, e.g. "jessie/amd64", "jessie/amd64/scm"
 define enumerate-build-dep-for-docker-build
-$(call enumerate-build-dep-for-docker-build-inner,$(call base-image-from-path,$(1)))
+$(call enumerate-build-dep-for-docker-build-inner,$(call base-image-from-path,$(1))) $(foreach s,$(wildcard $(1)/*), $(call target-name-from-path,$(s)))
 endef
 
 # $(1): suite
@@ -79,6 +79,9 @@ $(1)/Dockerfile: PRIVATE_SUITE := $(3)
 $(1)/Dockerfile: PRIVATE_ARCH := $(4)
 $(1)/Dockerfile: Dockerfile$(if $(5),-$(5)).template
 	$$(call do-dockerfile)
+
+.PHONY: $(call target-name-from-path,$(1)/Dockerfile)
+$(call target-name-from-path,$(1)/Dockerfile): $(1)/Dockerfile
 
 endef
 
@@ -144,7 +147,7 @@ $(target):
 dockerfiles: $(1)/Dockerfile
 $(call define-dockerfile-target,$(1),$(target),$(suite),$(arch),$(func))
 
-$(if $(wildcard $(1)/skip), \
+$(if $(if $(NO_SKIP),,$(wildcard $(1)/skip)), \
   $(info Skipping $(1): $(shell cat $(1)/skip)) \
   , \
   $(eval SUITE_ARCH += $(suite)/$(arch)) \

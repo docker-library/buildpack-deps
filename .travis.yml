@@ -1,7 +1,13 @@
 language: bash
+dist: trusty
+sudo: required
 services: docker
 
 env:
+  global:
+  - DOCKER_REPO=buildpack-deps
+  - secure: "Cp7x+H+xe7ZIBqVXw7ZRr8w0RcSOXdICyEh50n0llVW65k2HJiQNCcIej3IFaPhryPGglg86elsdOK2Pb0v0FriJ1l1kDlDYO0dMEe/hFcCOG/iOVoQO7ggsDxupebAskmKbNCfbGZRiL4ZLXIeGwXAe+Z0MVNoOqpvlvmpsysA="
+  matrix:
   - VERSION=jessie/amd64
   - VERSION=jessie/arm64
   - VERSION=jessie/armel
@@ -10,6 +16,7 @@ env:
   - VERSION=jessie/mips
   - VERSION=jessie/mipsel
   - VERSION=jessie/powerpc
+  - VERSION=jessie/ppc64el
   - VERSION=jessie/s390x
   - VERSION=precise/amd64
   - VERSION=precise/armhf
@@ -18,59 +25,108 @@ env:
   - VERSION=sid/arm64
   - VERSION=sid/armel
   - VERSION=sid/armhf
+  - VERSION=sid/hurd-i386
   - VERSION=sid/i386
+  - VERSION=sid/kfreebsd-amd64
+  - VERSION=sid/kfreebsd-i386
   - VERSION=sid/mips
+  - VERSION=sid/mips64el
   - VERSION=sid/mipsel
   - VERSION=sid/powerpc
+  - VERSION=sid/ppc64el
   - VERSION=sid/s390x
+  - VERSION=sid/sparc
   - VERSION=stretch/amd64
   - VERSION=stretch/arm64
   - VERSION=stretch/armel
   - VERSION=stretch/armhf
   - VERSION=stretch/i386
   - VERSION=stretch/mips
+  - VERSION=stretch/mips64el
   - VERSION=stretch/mipsel
-  - VERSION=stretch/powerpc
+  - VERSION=stretch/ppc64el
   - VERSION=stretch/s390x
   - VERSION=trusty/amd64
   - VERSION=trusty/arm64
   - VERSION=trusty/armhf
   - VERSION=trusty/i386
+  - VERSION=trusty/ppc64el
   - VERSION=wheezy/amd64
   - VERSION=wheezy/armel
   - VERSION=wheezy/armhf
   - VERSION=wheezy/i386
+  - VERSION=wheezy/ia64
+  - VERSION=wheezy/kfreebsd-amd64
+  - VERSION=wheezy/kfreebsd-i386
   - VERSION=wheezy/mips
   - VERSION=wheezy/mipsel
   - VERSION=wheezy/powerpc
+  - VERSION=wheezy/s390
+  - VERSION=wheezy/sparc
   - VERSION=xenial/amd64
   - VERSION=xenial/arm64
   - VERSION=xenial/armhf
   - VERSION=xenial/i386
+  - VERSION=xenial/ppc64el
+  - VERSION=xenial/s390x
   - VERSION=yakkety/amd64
   - VERSION=yakkety/arm64
   - VERSION=yakkety/armhf
   - VERSION=yakkety/i386
+  - VERSION=yakkety/ppc64el
+  - VERSION=yakkety/s390x
+
+matrix:
+  fast_finish: true
+  exclude:
+  - env: VERSION=sid/hurd-i386
+  - env: VERSION=sid/kfreebsd-amd64
+  - env: VERSION=sid/kfreebsd-i386
+  - env: VERSION=wheezy/ia64
+  - env: VERSION=wheezy/kfreebsd-amd64
+  - env: VERSION=wheezy/kfreebsd-i386
+  allow_failures:
+  - env: VERSION=sid/sparc
+  - env: VERSION=trusty/ppc64el
+  - env: VERSION=wheezy/s390
+  - env: VERSION=wheezy/sparc
+  - env: VERSION=xenial/ppc64el
+  - env: VERSION=xenial/s390x
+  - env: VERSION=yakkety/ppc64el
+  - env: VERSION=yakkety/s390x
+
+branches:
+  only:
+  - master
+
+addons:
+  apt:
+    sources:
+    - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ devel universe'
+    packages:
+    - binfmt-support
+    - qemu-user-static
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
 
 before_script:
   - env | sort
-  - cd "$VERSION"
-  - export image="buildpack-deps:$VERSION"
+  - export image="${DOCKER_USER}/${DOCKER_REPO}:${VERSION%/*}-${VERSION#*/}"
 
 script:
-  - test "$(head -n1 Dockerfile)" = "FROM $image-scm"
-    && test "$(head -n1 scm/Dockerfile)" = "FROM $image-curl"
-    && [[ "$(head -n1 curl/Dockerfile)" == 'FROM debian:'*
-       || "$(head -n1 curl/Dockerfile)" == 'FROM ubuntu'*':'* ]]
-  - docker build -t "$image-curl" curl
-  - docker build -t "$image-scm" scm
-  - docker build -t "$image" .
+  - make NO_SKIP=1 DOCKER_USER=${DOCKER_USER} DOCKER_REPO=${DOCKER_REPO} "${VERSION%/*}-${VERSION#*/}"
   - ~/official-images/test/run.sh "$image"
 
 after_script:
   - docker images
+
+after_success:
+- if [ "$TRAVIS_PULL_REQUEST" == "false" -a -n "$(docker images | grep ${DOCKER_USER}/${DOCKER_REPO})" ]; then
+    docker login -u "${DOCKER_USER}" -p "${DOCKER_PASSWORD}";
+    for p in $(docker images | grep ${DOCKER_USER}/${DOCKER_REPO} | awk '{print $1":"$2}'); do
+      docker push $p;
+    done
+  fi
 
 # vim:set et ts=2 sw=2:
