@@ -1,6 +1,7 @@
 FROM buildpack-deps:sid-scm
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    apt-transport-https \
 		autoconf \
 		automake \
 		bzip2 \
