@@ -1,4 +1,4 @@
-FROM buildpack-deps:jessie-scm
+FROM registry.docker/buildpack-deps:jessie-scm
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		autoconf \

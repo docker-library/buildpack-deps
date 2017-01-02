@@ -1,0 +1,6 @@
+image: registry.docker/debian
+volumes:
+  - /var/run/docker.sock
+script:
+  - docker build -t registry.docker/buildpack-deps:jessie-curl jessie/curl
+  - docker push registry.docker/buildpack-deps:jessie-curl

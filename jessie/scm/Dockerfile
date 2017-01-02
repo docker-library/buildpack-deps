@@ -1,4 +1,4 @@
-FROM buildpack-deps:jessie-curl
+FROM registry.docker/buildpack-deps:jessie-curl
 
 # procps is very common in build systems, and is a reasonably small package
 RUN apt-get update && apt-get install -y --no-install-recommends \

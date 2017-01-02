@@ -1,4 +1,4 @@
-FROM buildpack-deps:wheezy-curl
+FROM registry.docker/buildpack-deps:wheezy-curl
 
 # procps is very common in build systems, and is a reasonably small package
 RUN apt-get update && apt-get install -y --no-install-recommends \
