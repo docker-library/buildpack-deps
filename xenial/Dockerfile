@@ -1,6 +1,8 @@
 FROM buildpack-deps:xenial-scm
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN set -ex; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
 		autoconf \
 		automake \
 		bzip2 \
@@ -22,7 +24,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		liblzma-dev \
 		libmagickcore-dev \
 		libmagickwand-dev \
-		libmysqlclient-dev \
 		libncurses-dev \
 		libpng-dev \
 		libpq-dev \
@@ -38,4 +39,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		patch \
 		xz-utils \
 		zlib1g-dev \
-	&& rm -rf /var/lib/apt/lists/*
+		\
+# https://lists.debian.org/debian-devel-announce/2016/09/msg00000.html
+		$( \
+# if we use just "apt-cache show" here, it returns zero because "Can't select versions from package 'libmysqlclient-dev' as it is purely virtual", hence the pipe to grep
+			if apt-cache show 'default-libmysqlclient-dev' 2>/dev/null | grep -q '^Version:'; then \
+				echo 'default-libmysqlclient-dev'; \
+			else \
+				echo 'libmysqlclient-dev'; \
+			fi \
+		) \
+	; \
+	rm -rf /var/lib/apt/lists/*
