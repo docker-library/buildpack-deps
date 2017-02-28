@@ -25,9 +25,9 @@ script:
     && test "$(head -n1 scm/Dockerfile)" = "FROM $image-curl"
     && [[ "$(head -n1 curl/Dockerfile)" == 'FROM debian:'*
        || "$(head -n1 curl/Dockerfile)" == 'FROM ubuntu'*':'* ]]
-  - docker build -t "$image-curl" curl
-  - docker build -t "$image-scm" scm
-  - docker build -t "$image" .
+  - travis_retry docker build -t "$image-curl" curl
+  - travis_retry docker build -t "$image-scm" scm
+  - travis_retry docker build -t "$image" .
   - ~/official-images/test/run.sh "$image"
 
 after_script:
