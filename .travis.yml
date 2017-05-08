@@ -3,7 +3,6 @@ services: docker
 
 env:
   - VERSION=jessie
-  - VERSION=precise
   - VERSION=sid
   - VERSION=stretch
   - VERSION=trusty
