@@ -33,6 +33,23 @@ dirCommit() {
 	)
 }
 
+getArches() {
+	local repo="$1"; shift
+	local officialImagesUrl='https://github.com/docker-library/official-images/raw/master/library/'
+
+	eval "declare -A -g parentRepoToArches=( $(
+		find -name 'Dockerfile' -exec awk '
+				toupper($1) == "FROM" && $2 !~ /^('"$repo"'|scratch|microsoft\/[^:]+)(:|$)/ {
+					print "'"$officialImagesUrl"'" $2
+				}
+			' '{}' + \
+			| sort -u \
+			| xargs bashbrew cat --format '[{{ .RepoName }}:{{ .TagName }}]="{{ .TagEntry.ArchitecturesString }}"'
+	) )"
+}
+
+getArches 'buildpack-deps'
+
 cat <<-EOH
 # this file is generated via https://github.com/docker-library/buildpack-deps/blob/$(fileCommit "$self")/$self
 
@@ -50,6 +67,8 @@ join() {
 
 for version in "${versions[@]}"; do
 	versionAliases=( $version ${aliases[$version]:-} )
+	parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$version/curl/Dockerfile")"
+	arches="${parentRepoToArches[$parent]}"
 
 	for variant in curl scm; do
 		commit="$(dirCommit "$version/$variant")"
@@ -62,6 +81,7 @@ for version in "${versions[@]}"; do
 			Tags: $(join ', ' "${variantAliases[@]}")
 			GitCommit: $commit
 			Directory: $version/$variant
+			Architectures: $arches
 		EOE
 	done
 
@@ -72,5 +92,6 @@ for version in "${versions[@]}"; do
 		Tags: $(join ', ' "${versionAliases[@]}")
 		GitCommit: $commit
 		Directory: $version
+		Architectures: $arches
 	EOE
 done
