@@ -47,7 +47,6 @@ getArches() {
 			| xargs bashbrew cat --format '[{{ .RepoName }}:{{ .TagName }}]="{{ join " " .TagEntry.Architectures }}"'
 	) )"
 }
-
 getArches 'buildpack-deps'
 
 cat <<-EOH
@@ -67,6 +66,7 @@ join() {
 
 for version in "${versions[@]}"; do
 	versionAliases=( $version ${aliases[$version]:-} )
+
 	parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$version/curl/Dockerfile")"
 	arches="${parentRepoToArches[$parent]}"
 
@@ -79,9 +79,9 @@ for version in "${versions[@]}"; do
 		echo
 		cat <<-EOE
 			Tags: $(join ', ' "${variantAliases[@]}")
+			Architectures: $(join ', ' $arches)
 			GitCommit: $commit
 			Directory: $version/$variant
-			Architectures: $(join ', ' $arches)
 		EOE
 	done
 
@@ -90,8 +90,8 @@ for version in "${versions[@]}"; do
 	echo
 	cat <<-EOE
 		Tags: $(join ', ' "${versionAliases[@]}")
+		Architectures: $(join ', ' $arches)
 		GitCommit: $commit
 		Directory: $version
-		Architectures: $(join ', ' $arches)
 	EOE
 done
