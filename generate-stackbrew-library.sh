@@ -44,7 +44,7 @@ getArches() {
 				}
 			' '{}' + \
 			| sort -u \
-			| xargs bashbrew cat --format '[{{ .RepoName }}:{{ .TagName }}]="{{ .TagEntry.ArchitecturesString }}"'
+			| xargs bashbrew cat --format '[{{ .RepoName }}:{{ .TagName }}]="{{ join " " .TagEntry.Architectures }}"'
 	) )"
 }
 
@@ -81,7 +81,7 @@ for version in "${versions[@]}"; do
 			Tags: $(join ', ' "${variantAliases[@]}")
 			GitCommit: $commit
 			Directory: $version/$variant
-			Architectures: $arches
+			Architectures: $(join ', ' $arches)
 		EOE
 	done
 
@@ -92,6 +92,6 @@ for version in "${versions[@]}"; do
 		Tags: $(join ', ' "${versionAliases[@]}")
 		GitCommit: $commit
 		Directory: $version
-		Architectures: $arches
+		Architectures: $(join ', ' $arches)
 	EOE
 done
