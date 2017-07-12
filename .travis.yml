@@ -2,6 +2,7 @@ language: bash
 services: docker
 
 env:
+  - VERSION=artful
   - VERSION=buster
   - VERSION=jessie
   - VERSION=sid
