@@ -2,6 +2,7 @@ language: bash
 services: docker
 
 env:
+  - VERSION=buster
   - VERSION=jessie
   - VERSION=sid
   - VERSION=stretch
