@@ -10,7 +10,6 @@ env:
   - VERSION=trusty
   - VERSION=wheezy
   - VERSION=xenial
-  - VERSION=yakkety
   - VERSION=zesty
 
 install:
