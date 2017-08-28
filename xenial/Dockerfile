@@ -6,6 +6,7 @@ RUN set -ex; \
 		autoconf \
 		automake \
 		bzip2 \
+		dpkg-dev \
 		file \
 		g++ \
 		gcc \
