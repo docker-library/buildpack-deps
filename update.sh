@@ -26,10 +26,25 @@ for version in "${versions[@]}"; do
 		src="Dockerfile${variant:+-$variant}.template"
 		trg="$version${variant:+/$variant}/Dockerfile"
 		mkdir -p "$(dirname "$trg")"
-		( set -x && sed '
-			s!DIST!'"$dist"'!g;
-			s!SUITE!'"$version"'!g;
-		' "$src" > "$trg" )
+		(
+			set -x
+			sed \
+				-e 's!DIST!'"$dist"'!g' \
+				-e 's!SUITE!'"$version"'!g' \
+				"$src" > "$trg"
+		)
+		if [ "$dist" = 'debian' ]; then
+			# remove "bzr" from buster and later
+			case "$version" in
+				wheezy|jessie|stretch) ;;
+				*)
+					(
+						set -x
+						sed -i '/bzr/d' "$version/scm/Dockerfile"
+					)
+					;;
+			esac
+		fi
 	done
 	travisEnv+='\n  - VERSION='"$version"
 done
