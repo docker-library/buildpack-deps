@@ -32,6 +32,7 @@ RUN set -ex; \
 		libsqlite3-dev \
 		libssl-dev \
 		libtool \
+		libudev-dev \
 		libwebp-dev \
 		libxml2-dev \
 		libxslt-dev \
