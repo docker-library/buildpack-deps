@@ -26,6 +26,7 @@ RUN set -ex; \
 		libmagickcore-dev \
 		libmagickwand-dev \
 		libncurses-dev \
+		libncursesw5-dev \
 		libpng-dev \
 		libpq-dev \
 		libreadline-dev \
