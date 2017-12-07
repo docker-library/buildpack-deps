@@ -3,6 +3,7 @@ services: docker
 
 env:
   - VERSION=artful
+  - VERSION=bionic
   - VERSION=buster
   - VERSION=jessie
   - VERSION=sid
