@@ -11,7 +11,6 @@ env:
   - VERSION=trusty
   - VERSION=wheezy
   - VERSION=xenial
-  - VERSION=zesty
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images

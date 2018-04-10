@@ -9,39 +9,31 @@ if [ ${#versions[@]} -eq 0 ]; then
 fi
 versions=( "${versions[@]%/}" )
 
-debian="$(curl -fsSL 'https://raw.githubusercontent.com/docker-library/official-images/master/library/debian')"
-ubuntu="$(curl -fsSL 'https://raw.githubusercontent.com/docker-library/official-images/master/library/ubuntu')"
-
 travisEnv=
 for version in "${versions[@]}"; do
-	if echo "$debian" | grep -qE "\b$version\b"; then
+	if bashbrew list "https://github.com/docker-library/official-images/raw/master/library/debian:$version" &> /dev/null; then
 		dist='debian'
-	elif echo "$ubuntu" | grep -qE "\b$version\b"; then
+	elif bashbrew list "https://github.com/docker-library/official-images/raw/master/library/ubuntu:$version" &> /dev/null; then
 		dist='ubuntu'
 	else
 		echo >&2 "error: cannot determine repo for '$version'"
 		exit 1
 	fi
+	echo "$version: $dist"
 	for variant in curl scm ''; do
 		src="Dockerfile${variant:+-$variant}.template"
 		trg="$version${variant:+/$variant}/Dockerfile"
 		mkdir -p "$(dirname "$trg")"
-		(
-			set -x
-			sed \
-				-e 's!DIST!'"$dist"'!g' \
-				-e 's!SUITE!'"$version"'!g' \
-				"$src" > "$trg"
-		)
+		sed \
+			-e 's!DIST!'"$dist"'!g' \
+			-e 's!SUITE!'"$version"'!g' \
+			"$src" > "$trg"
 		if [ "$dist" = 'debian' ]; then
 			# remove "bzr" from buster and later
 			case "$version" in
-				wheezy|jessie|stretch) ;;
+				wheezy|jessie|stretch) echo ' - how bizarre (still includes "bzr")' ;;
 				*)
-					(
-						set -x
-						sed -i '/bzr/d' "$version/scm/Dockerfile"
-					)
+					sed -i '/bzr/d' "$version/scm/Dockerfile"
 					;;
 			esac
 		fi
