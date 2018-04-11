@@ -1,8 +1,9 @@
-#!/bin/bash
-set -eu
+#!/usr/bin/env bash
+set -Eeuo pipefail
 
 declare -A aliases=(
-	[stretch]='latest'
+	#[stretch]='latest'
+	# ("latest" determined automatically below)
 )
 
 self="$(basename "$BASH_SOURCE")"
@@ -66,6 +67,22 @@ join() {
 
 for version in "${versions[@]}"; do
 	versionAliases=( $version ${aliases[$version]:-} )
+
+	if debianSuite="$(
+		wget -qO- -o /dev/null "https://deb.debian.org/debian/dists/$version/Release" \
+			| gawk -F ':[[:space:]]+' '$1 == "Suite" { print $2 }'
+	)" && [ -n "$debianSuite" ]; then
+		# "stable", "oldstable", etc.
+		versionAliases+=( "$debianSuite" )
+		if [ "$debianSuite" = 'stable' ]; then
+			versionAliases+=( latest )
+		fi
+	elif ubuntuVersion="$(
+		wget -qO- -o /dev/null "http://archive.ubuntu.com/ubuntu/dists/$version/Release" \
+			| gawk -F ':[[:space:]]+' '$1 == "Version" { print $2 }'
+	)" && [ -n "$ubuntuVersion" ]; then
+		versionAliases+=( "$ubuntuVersion" )
+	fi
 
 	parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$version/curl/Dockerfile")"
 	arches="${parentRepoToArches[$parent]}"
