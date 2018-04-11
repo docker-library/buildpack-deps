@@ -77,6 +77,11 @@ for version in "${versions[@]}"; do
 		if [ "$debianSuite" = 'stable' ]; then
 			versionAliases+=( latest )
 		fi
+	elif ubuntuVersion="$(
+		wget -qO- -o /dev/null "http://archive.ubuntu.com/ubuntu/dists/$version/Release" \
+			| gawk -F ':[[:space:]]+' '$1 == "Version" { print $2 }'
+	)" && [ -n "$ubuntuVersion" ]; then
+		versionAliases+=( "$ubuntuVersion" )
 	fi
 
 	parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$version/curl/Dockerfile")"
