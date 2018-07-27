@@ -2,7 +2,6 @@ language: bash
 services: docker
 
 env:
-  - VERSION=artful
   - VERSION=bionic
   - VERSION=buster
   - VERSION=cosmic
