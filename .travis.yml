@@ -5,6 +5,7 @@ env:
   - VERSION=bionic
   - VERSION=buster
   - VERSION=cosmic
+  - VERSION=disco
   - VERSION=jessie
   - VERSION=sid
   - VERSION=stretch
