@@ -39,6 +39,7 @@ RUN set -ex; \
 		libyaml-dev \
 		make \
 		patch \
+		unzip \
 		xz-utils \
 		zlib1g-dev \
 		\
