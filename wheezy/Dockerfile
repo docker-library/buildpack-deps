@@ -20,6 +20,7 @@ RUN set -ex; \
 		libgdbm-dev \
 		libgeoip-dev \
 		libglib2.0-dev \
+		libgmp-dev \
 		libjpeg-dev \
 		libkrb5-dev \
 		liblzma-dev \
