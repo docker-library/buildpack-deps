@@ -10,7 +10,6 @@ env:
   - VERSION=sid
   - VERSION=stretch
   - VERSION=trusty
-  - VERSION=wheezy
   - VERSION=xenial
 
 install:
