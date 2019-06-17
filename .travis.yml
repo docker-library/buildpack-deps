@@ -9,7 +9,6 @@ env:
   - VERSION=jessie
   - VERSION=sid
   - VERSION=stretch
-  - VERSION=trusty
   - VERSION=xenial
 
 install:
