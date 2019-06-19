@@ -6,6 +6,7 @@ env:
   - VERSION=buster
   - VERSION=cosmic
   - VERSION=disco
+  - VERSION=eoan
   - VERSION=jessie
   - VERSION=sid
   - VERSION=stretch
