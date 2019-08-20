@@ -3,6 +3,7 @@ services: docker
 
 env:
   - VERSION=bionic
+  - VERSION=bullseye
   - VERSION=buster
   - VERSION=cosmic
   - VERSION=disco
