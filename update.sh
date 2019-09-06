@@ -31,7 +31,7 @@ for version in "${versions[@]}"; do
 		if [ "$dist" = 'debian' ]; then
 			# remove "bzr" from buster and later
 			case "$version" in
-				wheezy|jessie|stretch) echo ' - how bizarre (still includes "bzr")' ;;
+				jessie|stretch) echo ' - how bizarre (still includes "bzr")' ;;
 				*)
 					sed -i '/bzr/d' "$version/scm/Dockerfile"
 					;;
