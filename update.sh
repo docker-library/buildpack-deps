@@ -36,6 +36,9 @@ for version in "${versions[@]}"; do
 					sed -i '/bzr/d' "$version/scm/Dockerfile"
 					;;
 			esac
+			if [ "$version" = 'jessie' ]; then
+				sed -i '/libmaxminddb-dev/d' "$version/Dockerfile"
+			fi
 		fi
 	done
 	travisEnv+='\n  - VERSION='"$version"

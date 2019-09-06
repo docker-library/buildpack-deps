@@ -18,7 +18,6 @@ RUN set -ex; \
 		libevent-dev \
 		libffi-dev \
 		libgdbm-dev \
-		libgeoip-dev \
 		libglib2.0-dev \
 		libgmp-dev \
 		libjpeg-dev \
