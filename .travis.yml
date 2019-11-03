@@ -7,6 +7,7 @@ env:
   - VERSION=buster
   - VERSION=disco
   - VERSION=eoan
+  - VERSION=focal
   - VERSION=jessie
   - VERSION=sid
   - VERSION=stretch
