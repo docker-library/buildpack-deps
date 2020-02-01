@@ -5,7 +5,6 @@ env:
   - VERSION=bionic
   - VERSION=bullseye
   - VERSION=buster
-  - VERSION=disco
   - VERSION=eoan
   - VERSION=focal
   - VERSION=jessie
