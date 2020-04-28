@@ -9,7 +9,6 @@ if [ ${#versions[@]} -eq 0 ]; then
 fi
 versions=( "${versions[@]%/}" )
 
-travisEnv=
 for version in "${versions[@]}"; do
 	if bashbrew list "https://github.com/docker-library/official-images/raw/master/library/debian:$version" &> /dev/null; then
 		dist='debian'
@@ -41,8 +40,4 @@ for version in "${versions[@]}"; do
 			fi
 		fi
 	done
-	travisEnv+='\n  - VERSION='"$version"
 done
-
-travis="$(awk -v 'RS=\n\n' '$1 == "env:" { $0 = "env:'"$travisEnv"'" } { printf "%s%s", $0, RS }' .travis.yml)"
-echo "$travis" > .travis.yml
