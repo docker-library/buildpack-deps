@@ -9,7 +9,7 @@ declare -A aliases=(
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
-versions=( */ )
+versions=( */*/ )
 versions=( "${versions[@]%/}" )
 
 # get the most recent commit which modified any of "$@"
@@ -66,23 +66,35 @@ join() {
 }
 
 for version in "${versions[@]}"; do
-	versionAliases=( $version ${aliases[$version]:-} )
+	suite="$(basename "$version")"
+	dist="$(dirname "$version")"
+	dist="$(basename "$dist")"
 
-	if debianSuite="$(
-		wget -qO- -o /dev/null "https://deb.debian.org/debian/dists/$version/Release" \
-			| gawk -F ':[[:space:]]+' '$1 == "Suite" { print $2 }'
-	)" && [ -n "$debianSuite" ]; then
-		# "stable", "oldstable", etc.
-		versionAliases+=( "$debianSuite" )
-		if [ "$debianSuite" = 'stable' ]; then
-			versionAliases+=( latest )
-		fi
-	elif ubuntuVersion="$(
-		wget -qO- -o /dev/null "http://archive.ubuntu.com/ubuntu/dists/$version/Release" \
-			| gawk -F ':[[:space:]]+' '$1 == "Version" { print $2 }'
-	)" && [ -n "$ubuntuVersion" ]; then
-		versionAliases+=( "$ubuntuVersion" )
-	fi
+	versionAliases=( $suite ${aliases[$suite]:-} )
+
+	case "$dist" in
+		debian)
+			if debianSuite="$(
+				wget -qO- -o /dev/null "https://deb.debian.org/debian/dists/$suite/Release" \
+					| gawk -F ':[[:space:]]+' '$1 == "Suite" { print $2 }'
+			)" && [ -n "$debianSuite" ]; then
+				# "stable", "oldstable", etc.
+				versionAliases+=( "$debianSuite" )
+				if [ "$debianSuite" = 'stable' ]; then
+					versionAliases+=( latest )
+				fi
+			fi
+			;;
+
+		ubuntu)
+			if ubuntuVersion="$(
+				wget -qO- -o /dev/null "http://archive.ubuntu.com/ubuntu/dists/$suite/Release" \
+					| gawk -F ':[[:space:]]+' '$1 == "Version" { print $2 }'
+			)" && [ -n "$ubuntuVersion" ]; then
+				versionAliases+=( "$ubuntuVersion" )
+			fi
+			;;
+	esac
 
 	parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$version/curl/Dockerfile")"
 	arches="${parentRepoToArches[$parent]}"
