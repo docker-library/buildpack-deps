@@ -14,7 +14,7 @@ For outstanding `buildpack-deps` image PRs, check [PRs with the "library/buildpa
 
 ---
 
--	[![build status badge](https://img.shields.io/github/workflow/status/tianon/docker-bash/GitHub%20CI/master?label=GitHub%20CI)](https://github.com/tianon/docker-bash/actions?query=workflow%3A%22GitHub+CI%22+branch%3Amaster)
+-	[![build status badge](https://img.shields.io/github/workflow/status/docker-library/buildpack-deps/GitHub%20CI/master?label=GitHub%20CI)](https://github.com/docker-library/buildpack-deps/actions?query=workflow%3A%22GitHub+CI%22+branch%3Amaster)
 -	[![build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/update.sh/job/buildpack-deps.svg?label=Automated%20update.sh)](https://doi-janky.infosiftr.net/job/update.sh/job/buildpack-deps/)
 
 | Build | Status | Badges | (per-arch) |
