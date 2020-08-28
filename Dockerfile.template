@@ -1,9 +1,11 @@
-FROM buildpack-deps:SUITE-scm
+FROM buildpack-deps:{{ env.codename }}-scm
 
 RUN set -ex; \
 	apt-get update; \
+{{ if "ubuntu" == env.dist then ( -}}
 # make sure debconf doesn't try to prompt (e.g. tzdata on Ubuntu)
 	DEBIAN_FRONTEND=noninteractive \
+{{ ) else "" end -}}
 	apt-get install -y --no-install-recommends \
 		autoconf \
 		automake \
@@ -27,7 +29,9 @@ RUN set -ex; \
 		liblzma-dev \
 		libmagickcore-dev \
 		libmagickwand-dev \
+{{ if "jessie" != env.codename then ( -}}
 		libmaxminddb-dev \
+{{ ) else "" end -}}
 		libncurses5-dev \
 		libncursesw5-dev \
 		libpng-dev \

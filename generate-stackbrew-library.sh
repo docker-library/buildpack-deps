@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-declare -A aliases=(
-	#[stretch]='latest'
-	# ("latest" determined automatically below)
-)
-
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
-versions=( */*/ )
-versions=( "${versions[@]%/}" )
+if [ "$#" -eq 0 ]; then
+	versions="$(jq -r 'keys | map(@sh) | join(" ")' versions.json)"
+	eval "set -- $versions"
+fi
 
 # get the most recent commit which modified any of "$@"
 fileCommit() {
@@ -65,44 +62,32 @@ join() {
 	echo "${out#$sep}"
 }
 
-for version in "${versions[@]}"; do
-	suite="$(basename "$version")"
+for version; do
+	export version
+	# buster, bullseye, focal, etc
+	codename="$(basename "$version")"
+	# debian, ubuntu
 	dist="$(dirname "$version")"
-	dist="$(basename "$dist")"
 
-	versionAliases=( $suite ${aliases[$suite]:-} )
+	versionAliases=( "$codename" )
+	suite="$(jq -r '.[env.version].suite // empty' versions.json)"
+	if [ -n "$suite" ]; then
+		versionAliases+=( "$suite" )
+	fi
 
-	case "$dist" in
-		debian)
-			if debianSuite="$(
-				wget -qO- -o /dev/null "https://deb.debian.org/debian/dists/$suite/Release" \
-					| gawk -F ':[[:space:]]+' '$1 == "Suite" { print $2 }'
-			)" && [ -n "$debianSuite" ]; then
-				# "stable", "oldstable", etc.
-				versionAliases+=( "$debianSuite" )
-				if [ "$debianSuite" = 'stable' ]; then
-					versionAliases+=( latest )
-				fi
-			fi
-			;;
-
-		ubuntu)
-			if ubuntuVersion="$(
-				wget -qO- -o /dev/null "http://archive.ubuntu.com/ubuntu/dists/$suite/Release" \
-					| gawk -F ':[[:space:]]+' '$1 == "Version" { print $2 }'
-			)" && [ -n "$ubuntuVersion" ]; then
-				versionAliases+=( "$ubuntuVersion" )
-			fi
-			;;
-	esac
+	if [ "$suite" = 'stable' ]; then
+		versionAliases+=( latest )
+	fi
 
 	parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$version/curl/Dockerfile")"
 	arches="${parentRepoToArches[$parent]}"
 
-	for variant in curl scm; do
+	variants="$(jq -r '.[env.version].variants | map(@sh) | join(" ")' versions.json)"
+	eval "variants=( $variants )"
+	for variant in "${variants[@]}"; do
 		commit="$(dirCommit "$version/$variant")"
 
-		variantAliases=( "${versionAliases[@]/%/-$variant}" )
+		variantAliases=( "${versionAliases[@]/%/${variant:+-$variant}}" )
 		variantAliases=( "${variantAliases[@]//latest-/}" )
 
 		echo
@@ -110,17 +95,7 @@ for version in "${versions[@]}"; do
 			Tags: $(join ', ' "${variantAliases[@]}")
 			Architectures: $(join ', ' $arches)
 			GitCommit: $commit
-			Directory: $version/$variant
+			Directory: $version${variant:+/$variant}
 		EOE
 	done
-
-	commit="$(dirCommit "$version")"
-
-	echo
-	cat <<-EOE
-		Tags: $(join ', ' "${versionAliases[@]}")
-		Architectures: $(join ', ' $arches)
-		GitCommit: $commit
-		Directory: $version
-	EOE
 done
