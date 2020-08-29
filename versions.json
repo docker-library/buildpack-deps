@@ -1,0 +1,74 @@
+{
+  "debian/bullseye": {
+    "suite": "testing",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
+  "debian/buster": {
+    "suite": "stable",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
+  "debian/jessie": {
+    "suite": "oldoldstable",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
+  "debian/sid": {
+    "suite": "unstable",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
+  "debian/stretch": {
+    "suite": "oldstable",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
+  "ubuntu/bionic": {
+    "suite": "18.04",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
+  "ubuntu/focal": {
+    "suite": "20.04",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
+  "ubuntu/groovy": {
+    "suite": "20.10",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
+  "ubuntu/xenial": {
+    "suite": "16.04",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  }
+}
