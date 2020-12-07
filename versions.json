@@ -55,6 +55,14 @@
       ""
     ]
   },
+  "ubuntu/hirsute": {
+    "suite": "21.04",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
   "ubuntu/xenial": {
     "suite": "16.04",
     "variants": [

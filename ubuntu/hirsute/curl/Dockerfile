@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM debian:buster
+FROM ubuntu:hirsute
 
 RUN set -eux; \
 	apt-get update; \
@@ -13,6 +13,8 @@ RUN set -eux; \
 		curl \
 		netbase \
 		wget \
+# https://bugs.debian.org/929417
+		tzdata \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
