@@ -15,14 +15,6 @@
       ""
     ]
   },
-  "debian/jessie": {
-    "suite": "oldoldstable",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "debian/sid": {
     "suite": "unstable",
     "variants": [
