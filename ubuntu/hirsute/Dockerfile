@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM buildpack-deps:focal-scm
+FROM buildpack-deps:hirsute-scm
 
 RUN set -ex; \
 	apt-get update; \
