@@ -2,7 +2,7 @@
 
 ## Maintained by: [the Docker Community](https://github.com/docker-library/buildpack-deps)
 
-This is the Git repo of the [Docker "Official Image"](https://github.com/docker-library/official-images#what-are-official-images) for [`buildpack-deps`](https://hub.docker.com/_/buildpack-deps/) (not to be confused with any official `buildpack-deps` image provided by `buildpack-deps` upstream). See [the Docker Hub page](https://hub.docker.com/_/buildpack-deps/) for the full readme on how to use this Docker image and for information regarding contributing and issues.
+This is the Git repo of the [Docker "Official Image"](https://github.com/docker-library/official-images#what-are-official-images) for [`buildpack-deps`](https://hub.docker.com/_/buildpack-deps/). See [the Docker Hub page](https://hub.docker.com/_/buildpack-deps/) for the full readme on how to use this Docker image and for information regarding contributing and issues.
 
 The [full image description on Docker Hub](https://hub.docker.com/_/buildpack-deps/) is generated/maintained over in [the docker-library/docs repository](https://github.com/docker-library/docs), specifically in [the `buildpack-deps` directory](https://github.com/docker-library/docs/tree/master/buildpack-deps).
 
