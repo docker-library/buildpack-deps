@@ -25,9 +25,7 @@ RUN set -ex; \
 		liblzma-dev \
 		libmagickcore-dev \
 		libmagickwand-dev \
-{{ if "jessie" != env.codename then ( -}}
 		libmaxminddb-dev \
-{{ ) else "" end -}}
 		libncurses5-dev \
 		libncursesw5-dev \
 		libpng-dev \
