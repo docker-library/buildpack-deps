@@ -47,14 +47,6 @@
       ""
     ]
   },
-  "ubuntu/groovy": {
-    "suite": "20.10",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "ubuntu/hirsute": {
     "suite": "21.04",
     "variants": [
