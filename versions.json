@@ -8,7 +8,7 @@
     ]
   },
   "debian/buster": {
-    "suite": "stable",
+    "suite": "oldstable",
     "variants": [
       "curl",
       "scm",
