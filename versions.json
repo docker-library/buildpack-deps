@@ -24,7 +24,7 @@
     ]
   },
   "debian/stretch": {
-    "suite": "oldstable",
+    "suite": "oldoldstable",
     "variants": [
       "curl",
       "scm",
