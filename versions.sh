@@ -33,6 +33,9 @@ for version in "${distsSuites[@]}"; do
 	if [ -n "$suite" ]; then
 		export suite
 		doc="$(jq <<<"$doc" -c '.suite = env.suite')"
+		echo "$version: $suite"
+	else
+		echo "$version: ???"
 	fi
 	export doc version
 	json="$(jq <<<"$json" -c --argjson doc "$doc" '.[env.version] = $doc')"

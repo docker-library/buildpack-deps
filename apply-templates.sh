@@ -33,16 +33,21 @@ for version; do
 	dist="$(dirname "$version")"
 	export codename dist version
 
+	rm -rf "$version/"
+
 	variants="$(jq -r '.[env.version].variants | map(@sh) | join(" ")' versions.json)"
 	eval "variants=( $variants )"
 
 	for variant in "${variants[@]}"; do
 		template="Dockerfile${variant:+-$variant}.template"
-		target="$version${variant:+/$variant}/Dockerfile"
+		dir="$version${variant:+/$variant}"
+		mkdir -p "$dir"
+
+		echo "processing $dir ..."
 
 		{
 			generated_warning
 			gawk -f "$jqt" "$template"
-		} > "$target"
+		} > "$dir/Dockerfile"
 	done
 done
