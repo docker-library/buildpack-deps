@@ -1,4 +1,12 @@
 {
+  "debian/bookworm": {
+    "suite": "testing",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
   "debian/bullseye": {
     "suite": "stable",
     "variants": [
