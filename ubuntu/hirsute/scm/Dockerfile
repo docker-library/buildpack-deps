@@ -9,6 +9,7 @@ FROM buildpack-deps:hirsute-curl
 # procps is very common in build systems, and is a reasonably small package
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		git \
+		git-lfs \
 		mercurial \
 		openssh-client \
 		subversion \

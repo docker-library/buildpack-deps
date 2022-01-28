@@ -10,6 +10,7 @@ FROM buildpack-deps:focal-curl
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		bzr \
 		git \
+		git-lfs \
 		mercurial \
 		openssh-client \
 		subversion \

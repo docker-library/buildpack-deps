@@ -11,6 +11,9 @@ if [
 		bzr \
 {{ ) else "" end -}}
 		git \
+{{ if [ "stretch", "xenial" ] | index(env.codename) then "" else ( -}}
+		git-lfs \
+{{ ) end -}}
 		mercurial \
 		openssh-client \
 		subversion \
