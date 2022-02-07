@@ -55,14 +55,6 @@
       ""
     ]
   },
-  "ubuntu/hirsute": {
-    "suite": "21.04",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "ubuntu/impish": {
     "suite": "21.10",
     "variants": [
