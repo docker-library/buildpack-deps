@@ -71,6 +71,14 @@
       ""
     ]
   },
+  "ubuntu/kinetic": {
+    "suite": "22.10",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
   "ubuntu/xenial": {
     "suite": "16.04",
     "variants": [
