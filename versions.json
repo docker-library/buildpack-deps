@@ -31,14 +31,6 @@
       ""
     ]
   },
-  "debian/stretch": {
-    "suite": "oldoldstable",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "ubuntu/bionic": {
     "suite": "18.04",
     "variants": [
