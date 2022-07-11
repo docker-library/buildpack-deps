@@ -3,7 +3,7 @@ FROM {{ env.dist }}:{{ env.codename }}
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-{{ if [ "stretch", "xenial" ] | index(env.codename) then ( -}}
+{{ if env.codename == "xenial" then ( -}}
 		apt-transport-https \
 {{ ) else "" end -}}
 		ca-certificates \

@@ -4,7 +4,6 @@ FROM buildpack-deps:{{ env.codename }}-curl
 RUN apt-get update && apt-get install -y --no-install-recommends \
 {{
 if [
-	"stretch",
 	"bionic", "focal", "groovy", "xenial"
 ] | index(env.codename) then (
 -}}
