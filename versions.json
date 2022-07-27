@@ -47,14 +47,6 @@
       ""
     ]
   },
-  "ubuntu/impish": {
-    "suite": "21.10",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "ubuntu/jammy": {
     "suite": "22.04",
     "variants": [
