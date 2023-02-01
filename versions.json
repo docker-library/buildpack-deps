@@ -70,13 +70,5 @@
       "scm",
       ""
     ]
-  },
-  "ubuntu/xenial": {
-    "suite": "16.04",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
   }
 }
