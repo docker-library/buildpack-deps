@@ -3,9 +3,6 @@ FROM {{ env.dist }}:{{ env.codename }}
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-{{ if env.codename == "xenial" then ( -}}
-		apt-transport-https \
-{{ ) else "" end -}}
 		ca-certificates \
 		curl \
 		netbase \
