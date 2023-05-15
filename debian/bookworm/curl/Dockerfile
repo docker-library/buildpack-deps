@@ -13,6 +13,7 @@ RUN set -eux; \
 		curl \
 		gnupg \
 		netbase \
+		sq \
 		wget \
 	; \
 	rm -rf /var/lib/apt/lists/*
