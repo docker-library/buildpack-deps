@@ -1,6 +1,6 @@
 {
   "debian/bookworm": {
-    "suite": "testing",
+    "suite": "stable",
     "variants": [
       "curl",
       "scm",
