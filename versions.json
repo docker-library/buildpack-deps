@@ -8,7 +8,7 @@
     ]
   },
   "debian/bullseye": {
-    "suite": "stable",
+    "suite": "oldstable",
     "variants": [
       "curl",
       "scm",
