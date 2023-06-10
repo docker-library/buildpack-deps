@@ -16,7 +16,7 @@
     ]
   },
   "debian/buster": {
-    "suite": "oldstable",
+    "suite": "oldoldstable",
     "variants": [
       "curl",
       "scm",
