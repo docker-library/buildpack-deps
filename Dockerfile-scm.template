@@ -4,7 +4,7 @@ FROM buildpack-deps:{{ env.codename }}-curl
 RUN apt-get update && apt-get install -y --no-install-recommends \
 {{
 if [
-	"bionic", "focal", "groovy"
+	"focal", "groovy"
 ] | index(env.codename) then (
 -}}
 		bzr \
