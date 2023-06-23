@@ -31,14 +31,6 @@
       ""
     ]
   },
-  "ubuntu/bionic": {
-    "suite": "18.04",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "ubuntu/focal": {
     "suite": "20.04",
     "variants": [

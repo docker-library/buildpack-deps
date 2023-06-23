@@ -15,7 +15,6 @@ RUN set -eux; \
 	"buster",   # no sq
 	"jammy",    # 0.25
 	"focal",    # no sq
-	"bionic",   # no sq
 	empty # trailing comma
 ] | index(env.codename) then "" else ( -}}
 		sq \
