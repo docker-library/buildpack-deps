@@ -47,14 +47,6 @@
       ""
     ]
   },
-  "ubuntu/kinetic": {
-    "suite": "22.10",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "ubuntu/lunar": {
     "suite": "23.04",
     "variants": [
