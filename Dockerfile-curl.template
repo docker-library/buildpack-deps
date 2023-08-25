@@ -15,6 +15,7 @@ RUN set -eux; \
 	"buster",   # no sq
 	"jammy",    # 0.25
 	"focal",    # no sq
+	"trixie",   # no sq, https://github.com/docker-library/buildpack-deps/pull/149#issuecomment-1692238397
 	empty # trailing comma
 ] | index(env.codename) then "" else ( -}}
 		sq \

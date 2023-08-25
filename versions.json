@@ -31,6 +31,14 @@
       ""
     ]
   },
+  "debian/trixie": {
+    "suite": "testing",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
   "ubuntu/focal": {
     "suite": "20.04",
     "variants": [
