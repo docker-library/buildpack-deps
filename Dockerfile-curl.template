@@ -8,14 +8,14 @@ RUN set -eux; \
 		gnupg \
 		netbase \
 {{ if [
-	# we want versions of "sq" that contain https://gitlab.com/sequoia-pgp/sequoia/-/commit/b41e1504cd29097328cb21f95808c9972188499e (and thus "sq keyserver" subcommands)
+	# we want versions of "sq" that contain https://gitlab.com/sequoia-pgp/sequoia/-/commit/b41e1504cd29097328cb21f95808c9972188499e (and thus "sq keyserver" subcommands; 0.26+)
 	# https://packages.debian.org/sq
-	# https://packages.ubuntu.com/sq
 	"bullseye", # 0.24
 	"buster",   # no sq
+	# https://packages.ubuntu.com/sq
+	"mantic",   # no sq
 	"jammy",    # 0.25
 	"focal",    # no sq
-	"trixie",   # no sq, https://github.com/docker-library/buildpack-deps/pull/149#issuecomment-1692238397
 	empty # trailing comma
 ] | index(env.codename) then "" else ( -}}
 		sq \
