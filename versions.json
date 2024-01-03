@@ -70,5 +70,13 @@
       "scm",
       ""
     ]
+  },
+  "ubuntu/noble": {
+    "suite": "24.04",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
   }
 }
