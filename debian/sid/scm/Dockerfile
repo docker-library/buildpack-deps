@@ -17,4 +17,4 @@ RUN set -eux; \
 # procps is very common in build systems, and is a reasonably small package
 		procps \
 	; \
-	rm -rf /var/lib/apt/lists/*
+	apt-get dist-clean
