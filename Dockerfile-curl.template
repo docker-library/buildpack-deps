@@ -1,3 +1,4 @@
+{{ include "shared" -}}
 FROM {{ env.dist }}:{{ env.codename }}
 
 RUN set -eux; \
@@ -26,4 +27,4 @@ RUN set -eux; \
 		tzdata \
 {{ ) else "" end -}}
 	; \
-	rm -rf /var/lib/apt/lists/*
+	{{ apt_get_dist_clean }}

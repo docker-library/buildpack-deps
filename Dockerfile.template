@@ -1,3 +1,4 @@
+{{ include "shared" -}}
 FROM buildpack-deps:{{ env.codename }}-scm
 
 RUN set -ex; \
@@ -45,4 +46,4 @@ RUN set -ex; \
 		xz-utils \
 		zlib1g-dev \
 	; \
-	rm -rf /var/lib/apt/lists/*
+	{{ apt_get_dist_clean }}
