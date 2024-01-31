@@ -16,4 +16,4 @@ RUN set -eux; \
 		sq \
 		wget \
 	; \
-	rm -rf /var/lib/apt/lists/*
+	apt-get dist-clean
