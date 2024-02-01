@@ -13,7 +13,6 @@ def apt_get_dist_clean:
 		# https://packages.ubuntu.com/apt
 		"noble", # TODO once 2.7.8+ makes it into devel (and images are rebuilt), this should be removed!
 		"mantic",
-		"lunar",
 		"jammy",
 		"focal",
 
