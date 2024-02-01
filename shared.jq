@@ -5,7 +5,6 @@ def apt_get_dist_clean:
 
 		# https://tracker.debian.org/pkg/apt
 		# https://packages.debian.org/apt
-		"trixie", # TODO once 2.7.8 migrates to testing (and images are rebuilt), this should be removed!
 		"bookworm",
 		"bullseye",
 		"buster",

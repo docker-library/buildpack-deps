@@ -51,4 +51,4 @@ RUN set -ex; \
 		xz-utils \
 		zlib1g-dev \
 	; \
-	rm -rf /var/lib/apt/lists/*
+	apt-get dist-clean
