@@ -55,14 +55,6 @@
       ""
     ]
   },
-  "ubuntu/lunar": {
-    "suite": "23.04",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "ubuntu/mantic": {
     "suite": "23.10",
     "variants": [
