@@ -18,4 +18,4 @@ RUN set -eux; \
 # https://bugs.debian.org/929417
 		tzdata \
 	; \
-	rm -rf /var/lib/apt/lists/*
+	apt-get dist-clean
