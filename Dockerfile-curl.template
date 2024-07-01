@@ -12,7 +12,6 @@ RUN set -eux; \
 	# we want versions of "sq" that contain https://gitlab.com/sequoia-pgp/sequoia/-/commit/b41e1504cd29097328cb21f95808c9972188499e (and thus "sq keyserver" subcommands; 0.26+)
 	# https://packages.debian.org/sq
 	"bullseye", # 0.24
-	"buster",   # no sq
 	# https://packages.ubuntu.com/sq
 	"mantic",   # no sq
 	"jammy",    # 0.25

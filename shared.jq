@@ -7,7 +7,6 @@ def apt_get_dist_clean:
 		# https://packages.debian.org/apt
 		"bookworm",
 		"bullseye",
-		"buster",
 
 		# https://launchpad.net/ubuntu/+source/apt
 		# https://packages.ubuntu.com/apt
