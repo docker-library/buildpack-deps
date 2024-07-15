@@ -47,14 +47,6 @@
       ""
     ]
   },
-  "ubuntu/mantic": {
-    "suite": "23.10",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "ubuntu/noble": {
     "suite": "24.04",
     "variants": [
