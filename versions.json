@@ -54,5 +54,13 @@
       "scm",
       ""
     ]
+  },
+  "ubuntu/oracular": {
+    "suite": "24.10",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
   }
 }
