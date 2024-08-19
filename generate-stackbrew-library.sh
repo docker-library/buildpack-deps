@@ -92,8 +92,9 @@ for version; do
 
 		variantArches="$arches"
 		case "$version" in
-			debian/trixie)
+			debian/trixie | ubuntu/focal)
 				# trixie on riscv64 doesn't have git yet (at the very least, probably more once we get past that one), so we just exclude the upper variants for now and can revisit later
+				# focal on riscv64 doesn't have mercurial, so we just exclude the upper focal variants from riscv64 entirely
 				if [ "$variant" != 'curl' ]; then
 					variantArches="$(sed -r -e 's/ riscv64 / /g' <<<" $variantArches ")"
 				fi
