@@ -1,5 +1,5 @@
 def apt_get_dist_clean:
-	if [
+	if env.codename | IN(
 		# only suites with APT 2.7.8+ have "apt-get dist-clean"
 		# https://tracker.debian.org/news/1492892/accepted-apt-278-source-into-unstable/
 
@@ -14,7 +14,7 @@ def apt_get_dist_clean:
 		"focal",
 
 		empty
-	] | index(env.codename) then
+	) then
 		"rm -rf /var/lib/apt/lists/*"
 	else
 		"apt-get dist-clean"
