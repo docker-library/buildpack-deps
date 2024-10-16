@@ -4,11 +4,7 @@ FROM buildpack-deps:{{ env.codename }}-curl
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-{{
-if [
-	"focal", "groovy"
-] | index(env.codename) then (
--}}
+{{ if env.codename | IN("focal", "groovy") then ( -}}
 		bzr \
 {{ ) else "" end -}}
 		git \

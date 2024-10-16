@@ -8,7 +8,7 @@ RUN set -eux; \
 		curl \
 		gnupg \
 		netbase \
-{{ if [
+{{ if env.codename | IN(
 	# we want versions of "sq" that contain https://gitlab.com/sequoia-pgp/sequoia/-/commit/b41e1504cd29097328cb21f95808c9972188499e (and thus "sq keyserver" subcommands; 0.26+)
 	# https://packages.debian.org/sq
 	"bullseye", # 0.24
@@ -16,7 +16,7 @@ RUN set -eux; \
 	"jammy",    # 0.25
 	"focal",    # no sq
 	empty # trailing comma
-] | index(env.codename) then "" else ( -}}
+) then "" else ( -}}
 		sq \
 {{ ) end -}}
 		wget \
