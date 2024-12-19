@@ -14,6 +14,9 @@ fi
 if [ "$#" -eq 0 ]; then
 	versions="$(jq -r 'keys | map(@sh) | join(" ")' versions.json)"
 	eval "set -- $versions"
+
+	# TODO make this cleaner
+	rm -rf debian ubuntu
 fi
 
 generated_warning() {
