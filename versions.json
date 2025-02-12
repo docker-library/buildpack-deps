@@ -62,5 +62,13 @@
       "scm",
       ""
     ]
+  },
+  "ubuntu/plucky": {
+    "suite": "25.04",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
   }
 }
