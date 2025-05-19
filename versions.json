@@ -70,5 +70,13 @@
       "scm",
       ""
     ]
+  },
+  "ubuntu/questing": {
+    "suite": "25.10",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
   }
 }
