@@ -93,10 +93,6 @@ for version; do
 		variantAliases=( "${variantAliases[@]//latest-/}" )
 
 		variantArches="$arches"
-		if [ "$version" = 'ubuntu/focal' ] && [ "$variant" != 'curl' ]; then
-			# focal on riscv64 doesn't have mercurial, so we just exclude the upper focal variants from riscv64 entirely
-			variantArches="$(sed -r -e 's/ riscv64 / /g' <<<" $variantArches ")"
-		fi
 
 		echo
 		cat <<-EOE

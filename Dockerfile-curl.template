@@ -14,7 +14,6 @@ RUN set -eux; \
 	"bullseye", # 0.24
 	# https://packages.ubuntu.com/sq
 	"jammy",    # 0.25
-	"focal",    # no sq
 	empty # trailing comma
 ) then "" else ( -}}
 		sq \

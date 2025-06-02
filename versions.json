@@ -31,14 +31,6 @@
       ""
     ]
   },
-  "ubuntu/focal": {
-    "suite": "20.04",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "ubuntu/jammy": {
     "suite": "22.04",
     "variants": [

@@ -11,7 +11,6 @@ def apt_get_dist_clean:
 		# https://launchpad.net/ubuntu/+source/apt
 		# https://packages.ubuntu.com/apt
 		"jammy",
-		"focal",
 
 		empty
 	) then
