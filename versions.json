@@ -47,14 +47,6 @@
       ""
     ]
   },
-  "ubuntu/oracular": {
-    "suite": "24.10",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "ubuntu/plucky": {
     "suite": "25.04",
     "variants": [
