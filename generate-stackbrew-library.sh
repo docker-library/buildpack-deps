@@ -94,6 +94,12 @@ for version; do
 
 		variantArches="$arches"
 
+		# https://github.com/docker-library/official-images/pull/19581#issuecomment-3161255023 - Ubuntu 25.10+ ("questing") has updated their riscv64 baseline to RVA23 which is unsupported by DOI (and ... the entire public hardware ecosystem ATM)
+		case "$version" in
+			ubuntu/jammy | ubuntu/noble | ubuntu/plucky) ;; # pre-25.10 releases which can keep riscv64 support
+			ubuntu/*) variantArches="$(sed <<<" $variantArches " -e 's/ riscv64 / /g')" ;;
+		esac
+
 		echo
 		cat <<-EOE
 			Tags: $(join ', ' "${variantAliases[@]}")
