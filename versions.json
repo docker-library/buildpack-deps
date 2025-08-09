@@ -24,7 +24,7 @@
     ]
   },
   "debian/trixie": {
-    "suite": "testing",
+    "suite": "stable",
     "variants": [
       "curl",
       "scm",
