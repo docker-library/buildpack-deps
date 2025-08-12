@@ -15,6 +15,14 @@
       ""
     ]
   },
+  "debian/forky": {
+    "suite": "testing",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
+  },
   "debian/sid": {
     "suite": "unstable",
     "variants": [
