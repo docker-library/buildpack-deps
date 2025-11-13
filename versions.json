@@ -70,5 +70,13 @@
       "scm",
       ""
     ]
+  },
+  "ubuntu/resolute": {
+    "suite": "26.04",
+    "variants": [
+      "curl",
+      "scm",
+      ""
+    ]
   }
 }
