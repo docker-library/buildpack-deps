@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM ubuntu:questing
+FROM ubuntu:stonking
 
 RUN set -eux; \
 	apt-get update; \

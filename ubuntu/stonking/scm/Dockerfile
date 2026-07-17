@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM buildpack-deps:questing-curl
+FROM buildpack-deps:stonking-curl
 
 RUN set -eux; \
 	apt-get update; \

@@ -55,16 +55,16 @@
       ""
     ]
   },
-  "ubuntu/questing": {
-    "suite": "25.10",
+  "ubuntu/resolute": {
+    "suite": "26.04",
     "variants": [
       "curl",
       "scm",
       ""
     ]
   },
-  "ubuntu/resolute": {
-    "suite": "26.04",
+  "ubuntu/stonking": {
+    "suite": "26.10",
     "variants": [
       "curl",
       "scm",

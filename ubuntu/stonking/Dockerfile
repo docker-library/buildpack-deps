@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM buildpack-deps:questing-scm
+FROM buildpack-deps:stonking-scm
 
 RUN set -ex; \
 	apt-get update; \
