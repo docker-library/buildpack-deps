@@ -7,14 +7,6 @@
       ""
     ]
   },
-  "debian/bullseye": {
-    "suite": "oldoldstable",
-    "variants": [
-      "curl",
-      "scm",
-      ""
-    ]
-  },
   "debian/forky": {
     "suite": "testing",
     "variants": [
